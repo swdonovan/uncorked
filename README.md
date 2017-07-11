@@ -1,26 +1,31 @@
 # README
+[![Build Status](https://travis-ci.org/iamchrissmith/uncorked.svg?branch=master)](https://travis-ci.org/iamchrissmith/uncorked)
+
 ## Uncorked
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a project to build a clone of UnTappd.com but for Wine.  
 
-Things you may want to cover:
+Phase 1 Team includes:
+* [Alex Koch](https://github.com/alex-w-k)
+* [Chris Smith](https://github.com/iamchrissmith)
+* [Cody Borders](https://github.com/codyborders)
+* [Mason Holland](https://github.com/MasonHolland)
 
-* Ruby version
+* We used the following versions:
+ * Ruby 2.4.1
+ * Rails 5.1.2
+ * PostgreSQL
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-=======
+## To Test this out yourself
+1. Clone this repo
+2. `cd uncorked`
+3. `bundle`
+4. `rake db:setup`
+5. run `rails s`
+6. open `http://localhost:3000`
+7. login as a user with:
+ * Username: / Password:
+8. login as a venue owner with:
+ * Username: / Password:
+9. login as a platform admin with:
+ * Username: / Password:
