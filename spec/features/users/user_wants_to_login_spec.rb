@@ -20,9 +20,7 @@ RSpec.feature "user can login" do
     it "user logs in" do
       visit '/'
       click_on "Login"
-      expect(response).to be_success
       expect(current_path).to eq('/login')
-
       within("form") do
         fill_in "Username", with: user.username
         fill_in "Password", with: user.password
