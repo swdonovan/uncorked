@@ -11,10 +11,10 @@ Phase 1 Team includes:
 * [Cody Borders](https://github.com/codyborders)
 * [Mason Holland](https://github.com/MasonHolland)
 
-* We used the following versions:
- * Ruby 2.4.1
- * Rails 5.1.2
- * PostgreSQL
+## Versions:
+* Ruby 2.4.1
+* Rails 5.1.2
+* PostgreSQL
 
 ## To Test this out yourself
 1. Clone this repo
@@ -29,3 +29,7 @@ Phase 1 Team includes:
  * Username: / Password:
 9. login as a platform admin with:
  * Username: / Password:
+
+## Project Management Information:
+* [DB Schema](http://ondras.zarovi.cz/sql/demo/?keyword=uncorked)
+* [Tracker Project](https://www.pivotaltracker.com/n/projects/2075483)
