@@ -1,2 +1,18 @@
-Hello, <%= link_to "#{current_user.first_name} #{current_user.last_name}", user_path(current_user) %>
-<%= link_to "Logout", logout_path %>
+<nav>
+  <div class="nav-wrapper grey darken-4">
+    <a href="#" class="brand-logo">Uncorked</a>
+    <a href="#" data-activates="mobile-menu" class="button-collapse"><i class="material-icons">menu</i></a>
+    <ul class="right hide-on-med-and-down">
+      <li><%= link_to "Logout", logout_path %></li>
+    </ul>
+    <ul class="side-nav" id="mobile-menu">
+      <li><%= link_to "Logout", logout_path %></li>
+    </ul>
+  </div>
+  <div class="nav-content grey darken-3">
+    <span class="title">Hello, <%= link_to "#{current_user.first_name} #{current_user.last_name}", user_path(current_user) %>
+<%= link_to "Logout", logout_path %></span>
+  </div>
+</nav>
+
+
