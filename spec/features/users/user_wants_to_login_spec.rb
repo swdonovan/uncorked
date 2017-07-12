@@ -1,18 +1,4 @@
 require 'rails_helper'
-=begin
-As a user
-I want to login
-So that I can see my data
-Given that I have an account
-When I enter my username/password
-Then I am taken to my user welcome screen
-As a user
-I want to logout
-Because I am done using the app
-Given that I have an account and I am logged in
-When I click logout
-Then Session is destroyed and I am redirected to the login page
-=end
 
 RSpec.feature "user can login" do
   let(:user) { create(:user) }
