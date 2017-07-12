@@ -1,6 +1,10 @@
 language: ruby
+cache: bundler
+bundler_args: --without production
 rvm:
  - 2.4.1
+services:
+ - postgresql
 script:
- - rake db:test:prepare
- - rspec
+ - bin/rake db:migrate RAILS_ENV=test
+ - bin/rake
