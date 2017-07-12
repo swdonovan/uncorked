@@ -3,21 +3,19 @@
     <a href="#" class="brand-logo">Uncorked</a>
     <a href="#" data-activates="mobile-menu" class="button-collapse"><i class="material-icons">menu</i></a>
     <ul class="right hide-on-med-and-down">
-      <li>
         <% if current_user %>
-          <%= link_to "Logout", logout_path %>
+          <li><%= link_to "Logout", logout_path %></li>
         <% else %>
-          <%= link_to "Login", login_path %>
-          <%= link_to "Create Account", new_user_path %>
+          <li><%= link_to "Login", login_path %></li>
+          <li><%= link_to "Create Account", new_user_path %></li>
         <% end %>
-      </li>
     </ul>
     <ul class="side-nav" id="mobile-menu">
       <% if current_user %>
-        <%= link_to "Logout", logout_path %>
+        <li><%= link_to "Logout", logout_path %></li>
       <% else %>
-        <%= link_to "Login", login_path %>
-        <%= link_to "Create Account", new_user_path %>
+        <li><%= link_to "Login", login_path %></li>
+        <li><%= link_to "Create Account", new_user_path %></li>
       <% end %>
     </ul>
   </div>
