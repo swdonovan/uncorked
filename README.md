@@ -5,11 +5,12 @@
 
 This is a project to build a clone of UnTappd.com but for Wine.  
 
-Phase 1 Team includes:
+### Phase 1 Team includes:
 * [Alex Koch](https://github.com/alex-w-k)
 * [Chris Smith](https://github.com/iamchrissmith)
 * [Cody Borders](https://github.com/codyborders)
 * [Mason Holland](https://github.com/MasonHolland)
+* [Tom Soucie](https://github.com/TomSoucie)
 
 ## Versions:
 * Ruby 2.4.1
