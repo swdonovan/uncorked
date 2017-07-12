@@ -8,7 +8,9 @@ RSpec.feature "user can logout" do
       visit '/'
 
       expect(page).to have_content("Logout")
-      click_on("Logout")
+      within (".right") do
+        click_on("Logout")
+      end
       expect(page).to have_content("Successfully Logged out")
       expect(current_path).to eq(login_path)
     end

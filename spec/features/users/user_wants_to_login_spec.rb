@@ -5,7 +5,9 @@ RSpec.feature "user can login" do
   context "registered user not yet logged in" do
     it "user logs in" do
       visit '/'
-      click_on "Login"
+      within (".right") do
+        click_on "Login"
+      end
       expect(current_path).to eq('/login')
 
       within("form") do
@@ -25,7 +27,9 @@ RSpec.feature "user can login" do
   context "user enters wrong information" do
     it "displays error flash and keeps them on login page" do
       visit '/'
-      click_on "Login"
+      within (".right") do
+        click_on "Login"
+      end
       expect(current_path).to eq('/login')
 
       within("form") do
