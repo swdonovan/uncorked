@@ -29,3 +29,7 @@ Phase 1 Team includes:
  * Username: / Password:
 9. login as a platform admin with:
  * Username: / Password:
+
+## Project Management Information:
+* [DB Schema](http://ondras.zarovi.cz/sql/demo/?keyword=uncorked)
+* [Tracker Project](https://www.pivotaltracker.com/n/projects/2075483)
