@@ -11,10 +11,10 @@ Phase 1 Team includes:
 * [Cody Borders](https://github.com/codyborders)
 * [Mason Holland](https://github.com/MasonHolland)
 
-* We used the following versions:
- * Ruby 2.4.1
- * Rails 5.1.2
- * PostgreSQL
+## Versions:
+* Ruby 2.4.1
+* Rails 5.1.2
+* PostgreSQL
 
 ## To Test this out yourself
 1. Clone this repo
