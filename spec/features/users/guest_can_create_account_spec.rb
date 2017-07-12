@@ -5,7 +5,9 @@ RSpec.feature "Guest Can Create User Account" do
     it "guest should be able to enter their information" do
       visit root_path
 
-      click_on "Create Account"
+      within ('.hide-on-med-and-down') do
+        click_on "Create Account"
+      end
 
       expect(current_path).to eq new_user_path
 
