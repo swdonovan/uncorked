@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
   before_action :require_no_user, only: [:new]
   before_action :require_user, only: [:show, :edit]
+  before_action :set_user, only: [:edit, :update]
 
   def new
     @user = User.new
@@ -22,7 +23,14 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = current_user
+  end
+
+  def update
+    if @user.update(user_params)
+      redirect_to user_path(@user), success: "Profile updated"
+    else
+      render :edit
+    end
   end
 
   private
@@ -32,6 +40,10 @@ class UsersController < ApplicationController
 
     def require_user
       redirect_to login_path, warning: "You must be logged in to do this." unless current_user
+    end
+
+    def set_user
+      @user = current_user
     end
 
     def user_params

@@ -35,7 +35,7 @@ RSpec.feature "User can Edit Profile" do
       user.reload
 
       expect(current_path).to eq user_path(user)
-      expect(page).to have_content "Your Account has been updated."
+      expect(page).to have_content "Profile updated"
       expect(page).to have_content("Hello, #{new_info[:first_name]} #{new_info[:last_name]}")
       expect(page).to have_content(new_info[:email])
       expect(page).to have_content(new_info[:bio])
@@ -43,7 +43,7 @@ RSpec.feature "User can Edit Profile" do
       expect(page).to have_content("Following")
     end
 
-    xit "user should be able to update their password" do
+    it "user should be able to update their password" do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
       visit user_path(user)
@@ -59,7 +59,7 @@ RSpec.feature "User can Edit Profile" do
       user.reload
 
       expect(current_path).to eq user_path(user)
-      expect(page).to have_content "Your Account has been updated."
+      expect(page).to have_content "Profile updated"
       expect(page).to have_content("Hello, #{user.first_name} #{user.last_name}")
       expect(page).to have_content(user.email)
       expect(page).to have_content(user.bio)
