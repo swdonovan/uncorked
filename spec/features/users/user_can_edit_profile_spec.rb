@@ -1,19 +1,21 @@
 require 'rails_helper'
 
 RSpec.feature "User can Edit Profile" do
-  context "when logged in" do
-    let(:user) { create(:user) }
-    let(:new_info) {
+  let(:user) { create(:user) }
+  xcontext "when logged in" do
+    let(:new_info) {{
       first_name: "FN1",
       last_name: "LN1",
       username: "username1",
       email: "email@email.com1",
       phone_number: "123-456-7891",
       bio: "Consectetur adipiscing elit.",
-      password:"abc123"
+      password:"abc123"}
     }
 
     it "user should be able to update all of their information" do
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
       visit user_path(user)
 
       click_on "Edit Profile"
@@ -42,6 +44,8 @@ RSpec.feature "User can Edit Profile" do
     end
 
     it "user should be able to update their password" do
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
       visit user_path(user)
 
       click_on "Edit Profile"
@@ -64,14 +68,12 @@ RSpec.feature "User can Edit Profile" do
     end
   end
 
-  context "when already logged in" do
-    let (:user) { create(:user) }
-    it "user should be redirected to their profile" do
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
-      visit new_user_path
+  context "when not logged in" do
+    it "user should be redirected to the login page" do
+      visit edit_user_path(user)
 
-      expect(current_path).to eq(user_path(user))
-      expect(page).to have_content("You are already logged in.  Logout first to create a new account.")
+      expect(current_path).to eq(login_path)
+      expect(page).to have_content("You must be logged in to do this.")
     end
   end
 end

@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :require_no_user, only: [:new]
+  before_action :require_user, only: [:show, :edit]
 
   def new
     @user = User.new
@@ -20,9 +21,16 @@ class UsersController < ApplicationController
   def show
   end
 
+  def edit
+  end
+
   private
     def require_no_user
       redirect_to user_path(current_user), warning: "You are already logged in.  Logout first to create a new account." if current_user
+    end
+
+    def require_user
+      redirect_to login_path, warning: "You must be logged in to do this." unless current_user
     end
 
     def user_params
