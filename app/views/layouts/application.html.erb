@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Uncorked</title>
+    <title>Uncorked | <%= @title %></title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
-
   <body>
     <%= render 'layouts/nav' %>
     <%= flash[:error] %>
     <%= flash[:logout_success] %>
     <%= yield %>
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>
