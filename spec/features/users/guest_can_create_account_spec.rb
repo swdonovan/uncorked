@@ -14,6 +14,7 @@ RSpec.feature "Guest Can Create User Account" do
       fill_in "First name", with: "FN"
       fill_in "Last name", with: "LN"
       fill_in "Username", with: "username"
+      fill_in "Email", with: "email@email.com"
       fill_in "Phone number", with: "123-456-7890"
       fill_in "Biography", with: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
       fill_in "Password", with: "123abc"
@@ -23,7 +24,7 @@ RSpec.feature "Guest Can Create User Account" do
       user = User.last
 
       expect(current_path).to eq user_path(user)
-      expect(page).to have_content "You Account has been created"
+      expect(page).to have_content "Your Account has been created."
       expect(page).to have_content("Hello, #{user.first_name} #{user.last_name}")
       expect(page).to have_content(user.email)
       expect(page).to have_content(user.bio)
