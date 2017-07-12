@@ -14,14 +14,7 @@ RSpec.describe User, type: :model do
 
     context "valid attributes" do
       it "is valid with a first name, last name, username, email, phone number and password" do
-        user = User.new(
-                        first_name: "Mason",
-                        last_name: "Tom",
-                        email: "mason@tom.com",
-                        username: "ToMas",
-                        phone_number: "303-111-2222",
-                        password: "Password"
-                        )
+        user = create(:user)
 
         expect(user).to be_valid
       end
@@ -30,16 +23,9 @@ RSpec.describe User, type: :model do
 
   context "relationships" do
     xit "belongs to ..." do
-      user = User.new(
-                      first_name: "Mason",
-                      last_name: "Tom",
-                      email: "mason@tom.com",
-                      username: "ToMas",
-                      phone_number: "303-111-2222",
-                      password: "Password"
-                      )
+      user = create(:user)
 
-      expect(user).to resond_to(:model)
+      expect(user).to respond_to(:model)
     end
 
     xit "has many ..." do
@@ -52,7 +38,7 @@ RSpec.describe User, type: :model do
                       password: "Password"
                       )
 
-      expect(user).to resond_to(:model)
+      expect(user).to respond_to(:model)
     end
   end
 
