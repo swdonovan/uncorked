@@ -7,6 +7,6 @@ FactoryGirl.define do
     bio "Mybio blah blah"
     phone_number "12310041041"
     password "password"
-    role 1
+    role 0
   end
 end
