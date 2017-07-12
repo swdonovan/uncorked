@@ -7,7 +7,7 @@ RSpec.feature "user can view profile" do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
       visit '/'
 
-      expect(page).to have_content("Hello #{user.first_name} #{user.last_name}")
+      expect(page).to have_content("Hello, #{user.first_name} #{user.last_name}")
       expect(page).to have_content("Logout")
       expect(page).not_to have_content("Login")
 
