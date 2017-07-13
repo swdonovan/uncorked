@@ -1,5 +1,5 @@
 # Change these
-server 'myfucking.network', roles: [:web, :app, :db], primary: true
+server '104.198.12.254', roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'git@github.com:iamchrissmith/uncorked.git'
 set :application,     'uncorked'
