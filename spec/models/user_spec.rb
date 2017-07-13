@@ -29,14 +29,7 @@ RSpec.describe User, type: :model do
     end
 
     xit "has many ..." do
-      user = User.new(
-                      first_name: "Mason",
-                      last_name: "Tom",
-                      email: "mason@tom.com",
-                      username: "ToMas",
-                      phone_number: "303-111-2222",
-                      password: "Password"
-                      )
+      user = create(:user)
 
       expect(user).to respond_to(:model)
     end
