@@ -4,3 +4,5 @@
     <%= render partial: 'venues/venue_details', locals: {venue: venue} %>
   </div>
 <% end %>
+
+<%= will_paginate @venues %>
