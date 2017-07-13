@@ -17,14 +17,14 @@ RSpec.feature 'Guest can view a list of all wines' do
       html_wines = page.all('.wine')
       expect(html_wines.count).to eq 30
 
-      expect(html_wine[0]).to have_link(wine.first.name, href: wine_path(wine.first))
-      expect(html_wine[0]).to have_content(wine.first.varietal)
-      expect(html_wine[0]).to have_content(wine.first.vintage)
-      expect(html_wine[0]).to have_content(wine.first.vineyard)
-      expect(html_wine[0]).to have_content(wine.first.rating)
-      expect(html_wine[0]).to have_content(wine.first.description)
+      expect(html_wines[0]).to have_link(wines.first.name, href: wine_path(wines.first))
+      expect(html_wines[0]).to have_content(wines.first.varietal)
+      expect(html_wines[0]).to have_content(wines.first.vintage)
+      expect(html_wines[0]).to have_content(wines.first.vineyard)
+      expect(html_wines[0]).to have_content(wines.first.rating)
+      expect(html_wines[0]).to have_content(wines.first.description)
 
-      expect(page).to have_content "Next Page"
+      expect(page).to have_css '.next_page'
     end
 
     it 'guest can view second page of wines' do
@@ -34,21 +34,23 @@ RSpec.feature 'Guest can view a list of all wines' do
         click_on 'Wines'
       end
 
-      click_on 'Next Page'
+      within '.pagination .next_page' do
+        click_link
+      end
 
       expect(current_path).to eq wines_path
 
       html_wines = page.all('.wine')
       expect(html_wines.count).to eq 5
 
-      expect(html_wine[4]).to have_link(wine.last.name, href: wine_path(wine.last))
-      expect(html_wine[4]).to have_content(wine.last.varietal)
-      expect(html_wine[4]).to have_content(wine.last.vintage)
-      expect(html_wine[4]).to have_content(wine.last.vineyard)
-      expect(html_wine[4]).to have_content(wine.last.rating)
-      expect(html_wine[4]).to have_content(wine.last.description)
+      expect(html_wines[4]).to have_link(wines.last.name, href: wine_path(wines.last))
+      expect(html_wines[4]).to have_content(wines.last.varietal)
+      expect(html_wines[4]).to have_content(wines.last.vintage)
+      expect(html_wines[4]).to have_content(wines.last.vineyard)
+      expect(html_wines[4]).to have_content(wines.last.rating)
+      expect(html_wines[4]).to have_content(wines.last.description)
 
-      expect(page).to have_content "Previous Page"
+      expect(page).to have_css '.previous_page'
     end
   end
 end
