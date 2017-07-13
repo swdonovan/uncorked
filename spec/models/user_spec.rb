@@ -10,6 +10,7 @@ RSpec.describe User, type: :model do
       it { should validate_presence_of(:username) }
       it { should validate_uniqueness_of(:username) }
       it { should validate_presence_of(:phone_number) }
+      it { should have_db_column(:role).with_options(default: "member") }
     end
 
     context "valid attributes" do
@@ -32,6 +33,29 @@ RSpec.describe User, type: :model do
       user = create(:user)
 
       expect(user).to respond_to(:model)
+    end
+  end
+
+  context "roles" do
+    it "User is member role by default" do
+      user = create(:user)
+
+      expect(user.member?).to be true
+      expect(user.role).to eq "member"
+    end
+
+    it "User can be manager role" do
+      user = create(:user, :as_manager)
+
+      expect(user.manager?).to be true
+      expect(user.role).to eq "manager"
+    end
+
+    it "User can be platform admin" do
+      user = create(:user, :as_admin)
+
+      expect(user.admin?).to be true
+      expect(user.role).to eq "admin"
     end
   end
 

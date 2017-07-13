@@ -3,4 +3,6 @@ class User < ApplicationRecord
 
   validates_presence_of :first_name, :last_name, :username, :email, :phone_number, :password
   validates_uniqueness_of :username
+
+  enum role: %w(member manager admin)
 end
