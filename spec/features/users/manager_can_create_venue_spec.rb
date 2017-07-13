@@ -2,8 +2,38 @@ require 'rails_helper'
 
 
 RSpec.feature "Managers can create venues" do
-  context "when logged in as a manager"
-  context "when logged in as a member"
+  context "when logged in as a manager" do
+    let(:manager) { create(:user, :as_manager) }
+    it "Manager can create a venue" do
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(manager)
+
+      visit root_path
+      expect(current_path).to eq user_path(manager)
+
+      save_and_open_page
+
+      click_link "Add Venue"
+
+      expect(current_path).to eq new_venue_path
+
+      fill_in "Name", with: "My Venue"
+      fill_in "Street Address", with: "123 Address"
+      fill_in "City", with: "Denver"
+      fill_in "State", with: "CO"
+      fill_in "Zip", with: "80203"
+
+      click_button "Create Venue"
+
+      venue = Venue.last
+
+      expect(current_path).to eq venue_path(venue)
+
+      expect(venue.managers).to include(manager)
+
+      expect(page).to have_content("Venue Successfully Created")
+      expect(page).to have_link("Edit", href: edit_venue_path(venue))
+    end
+  end
 
   context "when not logged in as a manager" do
     context "as a guest" do
@@ -12,7 +42,8 @@ RSpec.feature "Managers can create venues" do
 
         expect(page).not_to have_link "Add Venue", href: new_venue_path
       end
-      it "redirects the guest to the homepage with a message" do
+
+      xit "redirects the guest to the homepage with a message" do
 
       end
     end
@@ -25,7 +56,8 @@ RSpec.feature "Managers can create venues" do
 
         expect(page).not_to have_link "Add Venue", href: new_venue_path
       end
-      it "displays the member to the homepage with a message" do
+
+      xit "displays the member to the homepage with a message" do
 
       end
     end
