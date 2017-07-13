@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-
 RSpec.feature "Managers can create venues" do
   context "when logged in as a manager" do
     let(:manager) { create(:user, :as_manager) }
