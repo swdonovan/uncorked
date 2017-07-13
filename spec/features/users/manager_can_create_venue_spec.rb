@@ -8,16 +8,15 @@ RSpec.feature "Managers can create venues" do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(manager)
 
       visit root_path
-      expect(current_path).to eq user_path(manager)
 
-      save_and_open_page
+      expect(current_path).to eq user_path(manager)
 
       click_link "Add Venue"
 
       expect(current_path).to eq new_venue_path
 
       fill_in "Name", with: "My Venue"
-      fill_in "Street Address", with: "123 Address"
+      fill_in "Street address", with: "123 Address"
       fill_in "City", with: "Denver"
       fill_in "State", with: "CO"
       fill_in "Zip", with: "80203"
