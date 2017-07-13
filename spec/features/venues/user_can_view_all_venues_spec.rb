@@ -6,7 +6,9 @@ RSpec.feature 'Guest can view a list of all venues' do
     it 'guest can view a list of venues' do
       visit root_path
 
-      click_on 'Venues'
+      within '.right' do
+        click_on 'Venues'
+      end
 
       expect(current_path).to eq venues_path
 
