@@ -14,7 +14,7 @@ class VenuesController < ApplicationController
   end
 
   def create
-    @venue = Venue.create(venue_params)
+    @venue = current_user.venues.create(venue_params)
 
     if @venue.save
       redirect_to @venue

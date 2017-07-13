@@ -29,10 +29,10 @@ RSpec.describe User, type: :model do
       expect(user).to respond_to(:model)
     end
 
-    xit "has many ..." do
+    it "has many venues" do
       user = create(:user)
 
-      expect(user).to respond_to(:model)
+      expect(user).to respond_to(:venues)
     end
   end
 
