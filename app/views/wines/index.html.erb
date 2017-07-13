@@ -1,0 +1,10 @@
+<% @wines.each do |wine| %>
+  <div class="wine">
+    <p><%= link_to wine.name, wine_path(wine) %></p>
+    <p><%= wine.varietal %></p>
+    <p><%= wine.vintage %></p>
+    <p><%= wine.vineyard %></p>
+    <p><%= wine.rating %></p>
+    <p><%= wine.description %></p>
+  </div>
+<% end %>
