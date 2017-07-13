@@ -12,7 +12,7 @@ RSpec.feature "Managers can create venues" do
 
       click_link "Add Venue"
 
-      expect(current_path).to eq new_venue_path
+      expect(current_path).to eq new_manager_venue_path
 
       fill_in "Name", with: "My Venue"
       fill_in "Street address", with: "123 Address"
@@ -38,11 +38,14 @@ RSpec.feature "Managers can create venues" do
       it "guests cannot see venue creation link" do
         visit root_path
 
-        expect(page).not_to have_link "Add Venue", href: new_venue_path
+        expect(page).not_to have_link "Add Venue", href: new_manager_venue_path
       end
 
-      xit "redirects the guest to the homepage with a message" do
+      it "redirects the guest to the homepage with a message" do
+        visit new_manager_venue_path
 
+        expect(current_path).to eq root_path
+        expect(page).to have_content("You do not have permission to access this page.")
       end
     end
     context "as a member" do
@@ -52,11 +55,16 @@ RSpec.feature "Managers can create venues" do
 
         visit root_path
 
-        expect(page).not_to have_link "Add Venue", href: new_venue_path
+        expect(page).not_to have_link "Add Venue", href: new_manager_venue_path
       end
 
-      xit "displays the member to the homepage with a message" do
+      it "displays the member to the homepage with a message" do
+        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(member)
 
+        visit new_manager_venue_path
+
+        expect(current_path).to eq root_path
+        expect(page).to have_content("You do not have permission to access this page.")
       end
     end
   end
