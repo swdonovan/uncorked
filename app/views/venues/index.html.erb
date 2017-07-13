@@ -1,0 +1,7 @@
+<% @venues.each do |venue| %>
+  <div class="venue">
+    <p><%= link_to venue.name, venue_path(venue) %></p>
+    <p><%= venue.street_address %></p>
+    <p><%= venue.city %>, <%= venue.state %> <%= venue.zip %></p>
+  </div>
+<% end %>
