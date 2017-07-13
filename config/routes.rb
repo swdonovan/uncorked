@@ -7,4 +7,5 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :create, :new, :edit, :update]
   resources :venues, only: [:index, :show]
+  resources :wines, only: [:index, :show]
 end
