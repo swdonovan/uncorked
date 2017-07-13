@@ -12,7 +12,6 @@ RSpec.feature "Managers can create venues" do
 
       click_link "Add Venue"
 
-
       expect(current_path).to eq new_venue_path
 
       fill_in "Name", with: "My Venue"
