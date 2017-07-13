@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.feature 'Guest can view a list of all venues' do
+RSpec.feature 'Guest can view a single venues' do
   let!(:venues) { create_list(:venue, 3) }
   context 'without being logged in' do
-    it 'guest can view a single venues' do
+    it 'guest can view a single venue\'s details' do
       visit root_path
 
       within '.right' do
