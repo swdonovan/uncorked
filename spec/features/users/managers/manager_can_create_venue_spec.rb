@@ -29,7 +29,7 @@ RSpec.feature "Managers can create venues" do
       expect(venue.managers).to include(manager)
 
       expect(page).to have_content("Venue Successfully Created")
-      expect(page).to have_link("Edit", href: edit_venue_path(venue))
+      expect(page).to have_link("Edit", href: edit_manager_venue_path(venue))
     end
   end
 
