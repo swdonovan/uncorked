@@ -25,6 +25,7 @@ gem 'kaminari'
 gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
+gem 'geocoder'
 
 # For deployment
 gem 'capistrano', '~> 3.7', '>= 3.7.1'
