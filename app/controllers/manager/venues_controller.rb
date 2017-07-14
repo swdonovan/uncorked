@@ -18,7 +18,10 @@ class Manager::VenuesController < ApplicationController
   end
 
   def show
+  end
 
+  def index
+    @venues = current_user.venues.paginate(:page => params[:page], :per_page => 30)
   end
 
   private
