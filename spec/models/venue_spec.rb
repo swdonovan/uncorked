@@ -11,7 +11,7 @@ RSpec.describe Venue, type: :model do
     it "has many users" do
       venue = create(:venue)
 
-      expect(venue).to respond_to(:users)
+      expect(venue).to respond_to(:managers)
     end
   end
 end

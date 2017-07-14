@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :user_venue do
-    user
     venue
+    manager { create(:user, :as_manager) }
   end
 end
