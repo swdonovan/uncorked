@@ -1,6 +1,7 @@
 class Manager::VenuesController < ApplicationController
 
   before_action :set_venue, only: [:edit, :show, :update]
+  before_action :require_user
 
   def new
     @venue = Venue.new
@@ -27,6 +28,12 @@ class Manager::VenuesController < ApplicationController
 
     def set_venue
       @venue = Venue.find(params[:id])
+    end
+
+    def require_user
+      unless current_user && current_user.manager?
+        redirect_to root_path, warning: "You do not have permission to access this page."
+      end
     end
 
 end
