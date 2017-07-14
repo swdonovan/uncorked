@@ -1,4 +1,4 @@
-<%= form_for @venue do |f| %>
+<%= form_for [:manager, @venue] do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
   <%= f.label :street_address %>
