@@ -1,12 +1,29 @@
 class VenueWinesController < ApplicationController
+
+  before_action :set_wine
+
   def new
-    @wine = Wine.find(params[:wine_id])
   end
 
   def create
-    wine = Wine.find(params[:wine_id])
-    venues = params[:venue_wines][:venue_ids].select(&:presence)
-    wine.venues << wine.venues + venues.map { |id| Venue.find(id) }
-    redirect_to wine_path(wine), success: "This wine has been successfully listed on your selected venues."
+    new_ids = params[:venue_wines][:venue_ids].select(&:presence)
+    @wine.venues << @wine.venues + new_ids.map { |id| Venue.find(id) }
+    redirect_to wine_path(@wine), success: "This wine has been successfully listed on your selected venues."
   end
+
+  def edit
+  end
+
+  def update
+    kept_ids = params[:venue_wines][:venue_ids].select(&:presence)
+    all_managed_venues = current_user.venues.pluck(:id)
+    venues_to_delete = all_managed_venues - kept_ids
+    @wine.venue_wines.where(venue_id: venues_to_delete).destroy_all
+    redirect_to wine_path(@wine), success: "The venues with this wine has been successfully updated."
+  end
+
+  private
+    def set_wine
+      @wine = Wine.find(params[:wine_id])
+    end
 end

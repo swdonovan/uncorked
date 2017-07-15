@@ -13,5 +13,7 @@ Rails.application.routes.draw do
   resources :wines, only: [:index, :show] do
     get '/add_to_venues', to: "venue_wines#new"
     post '/add_to_venues', to: "venue_wines#create"
+    get '/edit_venues', to: "venue_wines#edit"
+    post '/edit_venues', to: "venue_wines#update"
   end
 end
