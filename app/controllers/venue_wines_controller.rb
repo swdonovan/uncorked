@@ -19,6 +19,8 @@ class VenueWinesController < ApplicationController
     all_managed_venues = current_user.venues.pluck(:id)
     venues_to_delete = all_managed_venues - kept_ids
     @wine.venue_wines.where(venue_id: venues_to_delete).destroy_all
+    # @wines.venues.joins(:venue_wines).where(manager_id:current_user.id) << @THAT + new_ids
+    # need to account for user removing some and adding others
     redirect_to wine_path(@wine), success: "The venues with this wine has been successfully updated."
   end
 
