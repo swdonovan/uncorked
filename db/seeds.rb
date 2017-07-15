@@ -93,7 +93,7 @@ end
 
 def create_fake_venues
   type = ["Bistro", "Winery", "Bar", "Pub", "Club", "Speak Easy"]
-  34.times do
+  50.times do
     venue = Venue.new
     venue.name = "#{Faker::Witcher.character} #{type.sample}"
     venue.street_address = Faker::Address.street_address
@@ -123,7 +123,7 @@ end
 
 def create_fake_wines
   type = ["Red", "White", "Rose", "Champagne", "Rotgut", "Dessert Wine"]
-  34.times do
+  100.times do
     wine = Wine.new
     wine.name = "#{Faker::GameOfThrones.character} #{type.sample}"
     wine.description = Faker::Witcher.quote
