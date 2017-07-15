@@ -3,3 +3,4 @@
   <%= render partial: "wines/follow/#{current_user.role}_follow" %>
 <% end %>
 <%= render partial: 'wines/wine_details', locals: {wine: @wine} %>
+<%= render partial: 'venues/summary', locals: {venues: @wine.venues} %>

@@ -1,5 +1,5 @@
 <%= form_tag( wine_add_to_venues_path(@wine), method: :post) do %>
-  Select the venues you would like to have <%= @wine.name %>:
-  <%= collection_check_boxes(:venues, :venue_ids, current_user.venues, :id, :name) %>
+  Select the venues where you would like to list <%= @wine.name %>:
+  <%= collection_check_boxes(:venue_wines, :venue_ids, current_user.venues, :id, :name) %>
   <%= submit_tag 'Add Wine to Venues' %>
 <% end %>

@@ -16,12 +16,15 @@ RSpec.feature 'Managers can add a wine to their venue' do
 
       click_on "Add to Venue"
 
-      expect(page).to have_content "Select the venues you would like to have #{wine.name}:"
-      save_and_open_page
+      expect(page).to have_content "Select the venues where you would like to list #{wine.name}:"
 
       check venue.name
 
       click_on 'Add Wine to Venues'
+
+      expect(current_path).to eq wine_path(wine)
+      expect(page).to have_content "This wine has been successfully listed on your selected venues."
+      expect(page).to have_content venue.name
     end
   end
 
