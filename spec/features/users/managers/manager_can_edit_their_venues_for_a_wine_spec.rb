@@ -4,6 +4,7 @@ RSpec.feature 'Managers can edit venues a wine is listed on' do
   let!(:wine) { create(:wine) }
   let!(:venue) { create(:venue, wines: [wine] )}
   let!(:venue2) { create(:venue, wines: [wine] )}
+  let!(:new_venue) { create(:venue) }
   let!(:other_venue) { create(:venue, wines: [wine] )}
 
   context 'when logged in as a manager' do
@@ -12,6 +13,7 @@ RSpec.feature 'Managers can edit venues a wine is listed on' do
     context 'when the wine is already part of the venue wines list' do
       before { manager.venues << venue }
       before { manager.venues << venue2 }
+      before { manager.venues << new_venue }
       it 'manager can edit which venues carry the wine' do
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(manager)
 
@@ -27,6 +29,14 @@ RSpec.feature 'Managers can edit venues a wine is listed on' do
 
         expect(page).to have_content "Select/deselect the venues where you would like to list/unlist #{wine.name}:"
 
+        venue_checkbox = find("#venue_wines_venue_ids_#{venue.id}")
+        venue2_checkbox = find("#venue_wines_venue_ids_#{venue2.id}")
+        new_venue_checkbox = find("#venue_wines_venue_ids_#{new_venue.id}")
+
+        expect(venue_checkbox).to be_checked
+        expect(venue2_checkbox).to be_checked
+        expect(new_venue_checkbox).not_to be_checked
+
         uncheck venue.name
 
         click_on "Update Venues with #{wine.name}"
@@ -35,6 +45,7 @@ RSpec.feature 'Managers can edit venues a wine is listed on' do
         expect(page).to have_content "The venues with this wine has been successfully updated."
         expect(page).not_to have_content venue.name
         expect(page).to have_content venue2.name
+        expect(page).not_to have_content new_venue.name
         expect(page).to have_content other_venue.name
       end
     end

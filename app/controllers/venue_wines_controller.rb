@@ -15,7 +15,8 @@ class VenueWinesController < ApplicationController
   end
 
   def update
-    kept_ids = params[:venue_wines][:venue_ids].select(&:presence)
+    # binding.pry
+    kept_ids = params[:venue_wines][:venue_ids].select(&:presence).map(&:to_i)
     all_managed_venues = current_user.venues.pluck(:id)
     venues_to_delete = all_managed_venues - kept_ids
     @wine.venue_wines.where(venue_id: venues_to_delete).destroy_all
