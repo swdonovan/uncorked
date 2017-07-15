@@ -1,3 +1,7 @@
+User.destroy_all
+Venue.destroy_all
+Wine.destroy_all
+
 def create_users
   users = [
     ["Doug", "Miller", "dmiller", "doug@dmail.com", "I like big trucks and I like fine wine", "303-111-2222", "trucks4lyfe"]
