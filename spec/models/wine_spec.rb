@@ -18,16 +18,16 @@ RSpec.describe Wine, type: :model do
     end
 
     context "relationships" do
-      xit "belongs to ..." do
-        wine = create(:wine)
+      it 'has many venue_wines' do
+        venue = create(:wine)
 
-        expect(user).to respond_to(:model)
+        expect(venue).to respond_to(:venue_wines)
       end
 
-      xit "has many ..." do
-        wine = create(:wine)
+      it 'has many venue' do
+        venue = create(:wine)
 
-        expect(wine).to respond_to(:model)
+        expect(venue).to respond_to(:venues)
       end
     end
 
