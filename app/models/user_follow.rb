@@ -1,4 +1,4 @@
 class UserFollow < ApplicationRecord
   belongs_to :followable, polymorphic: true
-  # belongs_to :venue
+  belongs_to :user
 end
