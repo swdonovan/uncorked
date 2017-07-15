@@ -10,12 +10,12 @@ def create_users
                  bio: user[4],
                  phone_number: user[5],
                  password: user[6])
-    puts "User #{user.first_name} #{user.last_name} created"
+    puts "User #{user[0]} #{user[1]} created"
   end
 end
 
 def create_fake_users
-  500.times do
+  100.times do
     user = User.new
     user.first_name = Faker::Name.first_name
     user.last_name = Faker::Name.last_name
@@ -42,7 +42,7 @@ def create_managers
                  phone_number: user[5],
                  password: user[6],
                  role: 1)
-    puts "Manager #{user.first_name} #{user.last_name} created"
+    puts "Manager #{user[0]} #{user[1]} created"
   end
 end
 
@@ -63,7 +63,11 @@ def create_fake_managers
 end
 
 def create_admin
-  User.create(first_name: 'Admin', last_name: 'Of The Site', email: 'admin@admin.com', password: 'password', role: 2)
+  User.create(first_name: 'Admin',
+              last_name: 'Of The Site',
+              email: 'admin@admin.com',
+              password: 'password',
+              role: 2)
   puts "Created admin user"
 end
 
@@ -77,21 +81,22 @@ def create_venues
                  city: venue[2],
                  state: venue[3],
                  zip: venue[4],
-                 lat: venue[5],
-                 long: venue[6])
-    puts "Venue #{venue.name} created"
+                 latitude: venue[5],
+                 longitude: venue[6])
+    puts "Venue #{venue[0]} created"
   end
 end
 
 def create_fake_venues
-  25.times do
+  type = ["Bistro", "Winery", "Bar", "Pub", "Club", "Speak Easy"]
+  50.times do
     venue = Venue.new
-    venue.name = Faker::Company.name
+    venue.name = "#{Faker::Witcher.character} #{type.sample}"
     venue.street_address = Faker::Address.street_address
     venue.state = Faker::Address.state
     venue.zip = Faker::Address.zip
-    venue.lat = Faker::Address.latitude
-    venue.long = Faker::Address.longitude
+    venue.latitude = Faker::Address.latitude
+    venue.longitude = Faker::Address.longitude
     venue.save
     puts "Venue #{venue.name} created"
   end
@@ -108,14 +113,15 @@ def create_wines
                  varietal: wine[3],
                  vintage: wine[4],
                  vineyard: wine[5])
-    puts "Wine #{wine.name} created"
+    puts "Wine #{wine[0]} created"
   end
 end
 
 def create_fake_wines
-  500.times do
+  type = ["Red", "White", "Rose", "Champagne", "Rotgut", "Dessert Wine"]
+  100.times do
     wine = Wine.new
-    wine.name = Faker::GameOfThrones.character + %w(Red White Rose Champagne Wine)
+    wine.name = "#{Faker::GameOfThrones.character} #{type.sample}"
     wine.description = Faker::Witcher.quote
     wine.rating = Faker::PhoneNumber.subscriber_number(2)
     wine.varietal = Faker::GameOfThrones.house
@@ -125,3 +131,13 @@ def create_fake_wines
     puts "Wine #{wine.name} created"
   end
 end
+
+create_users
+create_fake_users
+create_managers
+create_fake_managers
+create_admin
+create_venues
+create_fake_venues
+create_wines
+create_fake_wines
