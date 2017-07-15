@@ -22,6 +22,7 @@ RSpec.feature 'Managers can edit venues a wine is listed on' do
         expect(page).to have_content venue.name
         expect(page).to have_content venue2.name
         expect(page).to have_content other_venue.name
+        expect(page).not_to have_content new_venue.name
 
         expect(page).to have_link "Edit Venues", href: wine_edit_venues_path(wine)
 
@@ -38,6 +39,7 @@ RSpec.feature 'Managers can edit venues a wine is listed on' do
         expect(new_venue_checkbox).not_to be_checked
 
         uncheck venue.name
+        check new_venue.name
 
         click_on "Update Venues with #{wine.name}"
 
@@ -45,7 +47,7 @@ RSpec.feature 'Managers can edit venues a wine is listed on' do
         expect(page).to have_content "The venues with this wine has been successfully updated."
         expect(page).not_to have_content venue.name
         expect(page).to have_content venue2.name
-        expect(page).not_to have_content new_venue.name
+        expect(page).to have_content new_venue.name
         expect(page).to have_content other_venue.name
       end
     end
