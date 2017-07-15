@@ -10,5 +10,10 @@ Rails.application.routes.draw do
   namespace :manager do
     resources :venues, only: [:index, :show, :new, :create, :edit]
   end
-  resources :wines, only: [:index, :show]
+  resources :wines, only: [:index, :show] do
+    get '/add_to_venues', to: "venue_wines#new"
+    post '/add_to_venues', to: "venue_wines#create"
+    get '/edit_venues', to: "venue_wines#edit"
+    post '/edit_venues', to: "venue_wines#update"
+  end
 end
