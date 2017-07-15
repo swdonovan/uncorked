@@ -5,15 +5,14 @@ RSpec.feature "Managers can edit venues" do
     let(:manager) { create(:user, :as_manager) }
     it "Manager can edit a venue" do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(manager)
-      venue = Venue.create!(
+      venue = manager.venues.create!(
                     name: "Bistro for the Plebs",
                     street_address: "123 Hollywood Pl",
                     city: "Hollywoooood",
                     state: "California",
                     zip: "90123",
                     latitude: "123.1111",
-                    longitude: "124.111",
-                    manager_id: manager.id)
+                    longitude: "124.111")
 
       visit root_path
 
@@ -21,7 +20,7 @@ RSpec.feature "Managers can edit venues" do
 
       click_on "My Venues"
 
-      expect(current_path).to eq(manager_venues_path(manger))
+      expect(current_path).to eq(manager_venues_path)
 
       click_on "Bistro for the Plebs"
 
@@ -32,8 +31,8 @@ RSpec.feature "Managers can edit venues" do
       expect(current_path).to eq(edit_manager_venue_path(venue))
 
       fill_in "Name", with: "Bistro for the Stars"
-
-      click_button "Submit"
+      
+      click_button "Update Venue"
 
       expect(page).to have_content("Bistro for the Stars")
     end
@@ -45,14 +44,14 @@ RSpec.feature "Managers can edit venues" do
         venue = create(:venue)
         visit venue_path(venue)
 
-        expect(page).not_to have_link "Edit Venue", href: edit_manager_venue_path
+        expect(page).not_to have_link "Edit Venue", href: edit_manager_venue_path(venue)
       end
 
       it "redirects the guest to the homepage with a message" do
         venue = create(:venue)
         visit manager_venue_path(venue)
 
-        expect(current_path).to eq(venue_path(venue))
+        expect(current_path).to eq root_path
         expect(page).to have_content("You do not have permission to access this page.")
       end
     end
@@ -65,13 +64,13 @@ RSpec.feature "Managers can edit venues" do
 
         visit venue_path(venue)
 
-        expect(page).not_to have_link "Edit Venue", href: edit_manager_venue_path
+        expect(page).not_to have_link "Edit Venue", href: edit_manager_venue_path(venue)
       end
 
       it "redirects the member to the homepage with a message" do
         venue = create(:venue)
 
-        visit venue_path(venue)
+        visit manager_venue_path(venue)
 
         expect(page).to have_content("You do not have permission to access this page.")
       end

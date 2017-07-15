@@ -24,6 +24,18 @@ class Manager::VenuesController < ApplicationController
     @venues = current_user.venues.paginate(:page => params[:page], :per_page => 30)
   end
 
+  def edit
+    @venue = Venue.find(params[:id])
+  end
+
+  def update
+    if @venue.update(venue_params)
+      redirect_to venue_path(@venue), success: "Venue updated"
+    else
+      render :edit
+    end
+  end
+
   private
     def venue_params
       params.require(:venue).permit(:name, :street_address, :city, :state, :zip)
