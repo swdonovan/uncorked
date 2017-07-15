@@ -24,7 +24,7 @@ RSpec.feature "Managers can create venues" do
 
       venue = Venue.last
 
-      expect(current_path).to eq manager_venue_path(venue)
+      expect(current_path).to eq venue_path(venue)
 
       expect(venue.managers).to include(manager)
 
@@ -58,7 +58,7 @@ RSpec.feature "Managers can create venues" do
         expect(page).not_to have_link "Add Venue", href: new_manager_venue_path
       end
 
-      it "redirects the member to the homepage with a message" do
+      it "displays the member to the homepage with a message" do
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(member)
 
         visit new_manager_venue_path
