@@ -15,7 +15,11 @@ class VenueWinesController < ApplicationController
   end
 
   def update
-    kept_ids = params[:venue_wines][:venue_ids].select(&:presence).map(&:to_i)
+    if params[:venue_wines]
+      kept_ids = params[:venue_wines][:venue_ids].select(&:presence).map(&:to_i)
+    else
+      kept_ids = []
+    end
     all_managed_venues = current_user.venues.pluck(:id)
     venues_to_delete = all_managed_venues - kept_ids
     venues_to_add = kept_ids - @wine.venues.pluck(:id)
