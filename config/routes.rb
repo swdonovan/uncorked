@@ -11,4 +11,5 @@ Rails.application.routes.draw do
     resources :venues, only: [:index, :show, :new, :create, :edit]
   end
   resources :wines, only: [:index, :show]
+  resources :user_follows, only: [:index, :show]
 end

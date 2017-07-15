@@ -6,10 +6,10 @@ RSpec.feature "user wants to follow a venue" do
     let!(:venue) { create(:venue) }
     it "member can follow a venue" do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
-      # venue = create(:venue)
       visit venues_path
       expect(current_path).to eq("/venues")
-      expect(page).to have_content(venue.name)
+
+      expect(page).to have_link(venue.name)
       click_on(venue.name)
 
       expect(current_path).to eq(venue_path(venue))
