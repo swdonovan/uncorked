@@ -2,6 +2,9 @@ class Venue < ApplicationRecord
   has_many :user_venues
   has_many :managers, through: :user_venues, source_type: "User"
 
+  has_many :venue_wines
+  has_many :wines, through: :venue_wines
+
   geocoded_by :full_address
   after_validation :geocode, if: ->(obj) { obj.full_address.present? and obj.full_address_changed? }
 

@@ -40,5 +40,17 @@ RSpec.describe Venue, type: :model do
 
       expect(venue).to respond_to(:managers)
     end
+
+    it 'has many venue_wines' do
+      venue = create(:venue)
+
+      expect(venue).to respond_to(:venue_wines)
+    end
+
+    it 'has many wines' do
+      venue = create(:venue)
+
+      expect(venue).to respond_to(:wines)
+    end
   end
 end
