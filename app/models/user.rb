@@ -8,4 +8,5 @@ class User < ApplicationRecord
 
   has_many :user_venues, as: :manager
   has_many :venues, through: :user_venues
+  has_many :venues, as: :followable
 end
