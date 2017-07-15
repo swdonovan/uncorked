@@ -21,8 +21,6 @@ class VenueWinesController < ApplicationController
     venues_to_add = kept_ids - @wine.venues.pluck(:id)
     @wine.venue_wines.where(venue_id: venues_to_delete).destroy_all
     @wine.venues << @wine.venues + venues_to_add.map { |id| Venue.find(id) }
-    # @wines.venues.joins(:venue_wines).where(manager_id:current_user.id) << @THAT + new_ids
-    # need to account for user removing some and adding others
     redirect_to wine_path(@wine), success: "The venues with this wine has been successfully updated."
   end
 
