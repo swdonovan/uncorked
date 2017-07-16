@@ -39,8 +39,8 @@ RSpec.feature 'Guest can view a list of all venues' do
       expect(current_path).to eq venues_path
 
       html_venues = page.all('.venue')
+      
       expect(html_venues.count).to eq 5
-
       expect(html_venues[4]).to have_link(venues.last.name, href: venue_path(venues.last))
       expect(html_venues[4]).to have_content(venues.last.street_address)
       expect(html_venues[4]).to have_content(venues.last.city)

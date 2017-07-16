@@ -55,7 +55,7 @@ RSpec.feature "Managers can edit venues" do
 
       visit manager_venue_path(venue)
 
-      expect(current_path).to eq(venue_path(venue))
+      expect(current_path).to eq(manager_venues_path)
       expect(page).to have_content("You do not have permission to access this page")
     end
   end
