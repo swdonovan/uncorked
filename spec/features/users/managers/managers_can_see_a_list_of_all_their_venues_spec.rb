@@ -15,7 +15,7 @@ RSpec.feature "Managers can see a list of their venues" do
 
       expect(html_venues.count).to eq 3
 
-      expect(html_venues[0]).to have_link(venues.first.name, href: venue_path(venues.first))
+      expect(html_venues[0]).to have_link(venues.first.name, href: manager_venue_path(venues.first))
       expect(html_venues[0]).to have_content(venues.first.street_address)
       expect(html_venues[0]).to have_content(venues.first.city)
       expect(html_venues[0]).to have_content(venues.first.state)
