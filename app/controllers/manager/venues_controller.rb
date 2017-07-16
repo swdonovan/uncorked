@@ -2,7 +2,7 @@ class Manager::VenuesController < ApplicationController
 
   before_action :set_venue, only: [:edit, :show, :update]
   before_action :require_user
-  before_action :require_correct_manager
+  before_action :require_correct_managerr
 
   def new
     @venue = Venue.new
@@ -52,8 +52,7 @@ class Manager::VenuesController < ApplicationController
     end
 
     def require_correct_manager
-      venues = current_user.venues.pluck(:id)
-      unless venues.include?(@venue.id)
+      unless @venue.managers.include?(current_user)
         if params["action"] == "show"
           redirect_to manager_venues_path, warning: "You do not have permission to access this page."
         else
