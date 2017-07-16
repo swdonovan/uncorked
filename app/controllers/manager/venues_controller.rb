@@ -2,7 +2,7 @@ class Manager::VenuesController < ApplicationController
 
   before_action :set_venue, only: [:edit, :show, :update]
   before_action :require_user
-  before_action :require_correct_managerr
+  before_action :require_correct_manager, only: [:edit, :show, :update]
 
   def new
     @venue = Venue.new
