@@ -4,7 +4,8 @@ class WinesController < ApplicationController
 
   def index
     if params[:q].present?
-      @wines = Wine.where(name: params[:q]).paginate(:page => params[:page], :per_page => 30)
+      @wines = Wine.text_search(params[:q]).paginate(:page => params[:page], :per_page => 30)
+      # @posts = Post.text_search(params[:q])
     else
       @wines = Wine.all.paginate(:page => params[:page], :per_page => 30)
     end
