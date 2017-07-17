@@ -1,5 +1,5 @@
 <h2><%= @venue.name %></h2>
 <% if current_user && current_user.role == "member" %>
-  <%= link_to "Follow Venue", user_follows_path(@venue) %>
+  <%= link_to "Follow Venue", new_user_follow_path(@venue, followable: "Venue") %>
 <% end %>
 <%= render partial: 'venues/venue_details', locals: {venue: @venue} %>

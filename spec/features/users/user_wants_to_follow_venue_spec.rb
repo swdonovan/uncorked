@@ -16,8 +16,8 @@ RSpec.feature "user wants to follow a venue" do
       expect(page).to have_link("Follow Venue")
 
       click_on("Follow Venue")
+      expect(current_path).to eq(user_follows_path(user))
       expect(page).to have_content("Venue successfully followed!")
-      expect(current_path).to eq(user_venues_path(user))
     end
   end
   context "when not logged in" do

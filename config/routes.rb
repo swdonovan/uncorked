@@ -13,5 +13,5 @@ Rails.application.routes.draw do
   end
 
   resources :wines, only: [:index, :show]
-  resources :user_follows, only: [:new, :create]
+  resources :user_follows, only: [:new, :create, :index]
 end
