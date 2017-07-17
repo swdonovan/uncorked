@@ -10,21 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170715212130) do
+ActiveRecord::Schema.define(version: 20170717152818) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pg_trgm"
-
-  create_table "user_follows", force: :cascade do |t|
-    t.bigint "user_id"
-    t.string "followable_type"
-    t.bigint "followable_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["followable_type", "followable_id"], name: "index_user_follows_on_followable_type_and_followable_id"
-    t.index ["user_id"], name: "index_user_follows_on_user_id"
-  end
 
   create_table "user_venues", force: :cascade do |t|
     t.bigint "venue_id"
@@ -79,7 +69,6 @@ ActiveRecord::Schema.define(version: 20170715212130) do
     t.index ["name"], name: "index_wines_on_name"
   end
 
-  add_foreign_key "user_follows", "users"
   add_foreign_key "user_venues", "venues"
   add_foreign_key "venue_wines", "venues"
   add_foreign_key "venue_wines", "wines"
