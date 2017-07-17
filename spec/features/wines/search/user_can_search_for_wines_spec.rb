@@ -11,6 +11,8 @@ RSpec.feature 'User searches for wine' do
         visit wines_path
 
         expect(page).to have_content "Search for a wine:"
+        form_action = find('#search_form')['action']
+        expect(form_action).to eq wines_path
         expect(page).to have_content wine1.name
         expect(page).to have_content wine2.name
         expect(page).to have_content wine3.name
