@@ -25,7 +25,7 @@ def create_fake_users
     user.last_name = Faker::Name.last_name
     user.username = Faker::Internet.user_name("#{user.first_name} #{user.last_name}", %w(. _ -))
     user.email = Faker::Internet.email
-    user.bio = Faker::Witcher.quote
+    user.bio = Faker::ChuckNorris.fact
     user.phone_number = Faker::PhoneNumber.phone_number
     user.password = Faker::Internet.password
     user.save
@@ -57,7 +57,6 @@ def create_fake_managers
     user.last_name = Faker::Name.last_name
     user.username = Faker::Internet.user_name("#{user.first_name} #{user.last_name}", %w(. _ -))
     user.email = Faker::Internet.email
-    user.bio = Faker::Witcher.quote
     user.phone_number = Faker::PhoneNumber.phone_number
     user.password = Faker::Internet.password
     user.role = 1
@@ -126,7 +125,7 @@ def create_fake_wines
   100.times do
     wine = Wine.new
     wine.name = "#{Faker::GameOfThrones.character} #{type.sample}"
-    wine.description = Faker::Witcher.quote
+    wine.description = Faker::VentureBros.quote
     wine.rating = Faker::PhoneNumber.subscriber_number(2)
     wine.varietal = Faker::GameOfThrones.house
     wine.vintage = Faker::PhoneNumber.subscriber_number(4)
