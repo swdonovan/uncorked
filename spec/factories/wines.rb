@@ -5,6 +5,6 @@ FactoryGirl.define do
     vineyard "MyString"
     rating 98
     description "TASTY"
-    sequence(:name) { |n| "name#{n}"}
+    sequence(:name) { |n| "name #{n}"}
   end
 end
