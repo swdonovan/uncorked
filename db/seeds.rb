@@ -97,6 +97,7 @@ def create_fake_venues
     venue.name = "#{Faker::Witcher.character} #{type.sample}"
     venue.street_address = Faker::Address.street_address
     venue.state = Faker::Address.state
+    venue.city = Faker::Address.city
     venue.zip = Faker::Address.zip
     venue.latitude = Faker::Address.latitude
     venue.longitude = Faker::Address.longitude
