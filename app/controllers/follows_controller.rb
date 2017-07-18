@@ -1,19 +1,25 @@
 class FollowsController < ApplicationController
 
   def create
-    @follow = current_user.follows.new(follow_params)
-    if @follow.save
-      redirect_to @follow.target, success: "#{follow_params[:target_type]} successfully followed!"
+    follow = current_user.follows.new(follow_params)
+    if follow.save
+      StreamRails.feed_manager.follow_user(follow.user_id, follow.target_id)
+      redirect_to follow.target, success: "#{follow_params[:target_type]} successfully followed!"
     else
-      redirect_to @follow.target, warning: "There was a problem! #{follow_params[:target_type]} was not followed!"
+      redirect_to follow.target, warning: "There was a problem! #{follow_params[:target_type]} was not followed!"
     end
   end
 
   def destroy
     follow = Follow.find(params[:id])
-    # target = follow.target
-    follow.destroy
-    redirect_to follow.target, success: "#{follow.target.class} successfully unfollowed!"
+    session[:return_to] ||= request.referer
+    if follow.user_id == current_user.id
+      StreamRails.feed_manager.unfollow_user(follow.user_id, follow.target_id)
+      follow.destroy
+      redirect_to session.delete(:return_to), success: "#{follow.target.class} successfully unfollowed!"
+    else
+      redirect_to session.delete(:return_to), warning: "You do not have permission to do this."
+    end
   end
 
   private
