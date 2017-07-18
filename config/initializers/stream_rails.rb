@@ -8,9 +8,16 @@ StreamRails.configure do |config|
   # If you use custom feed names, e.g.: timeline_flat, timeline_aggregated,
   # use this, otherwise omit:
   config.news_feeds = {
-    flat: "follow_venue"
+    flat: "venue",
+    flat: "wine",
+    flat: "user"
   }
   # Point to the notifications feed group providing the name, omit if you don't
   # have a notifications feed
   # config.notification_feed = "notification"
 end
+
+# watchout for id collisions
+# three activity data:
+# - actor, object, verb, time and foreign_id (can be the same as object)
+# - to field in activity references other feed ids
