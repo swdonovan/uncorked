@@ -1,9 +1,15 @@
 class FollowsController < ApplicationController
 
   def create
-    follow = current_user.follows.new(follow_params)
+    case params[:target_type]
+    when "Venue"
+      target = Venue.find(params[:target_id])
+    end
+
+    follow = current_user.follows.new(target: target)
     if follow.save
       StreamRails.client.feed('user', current_user.id).follow(follow.target_feed, follow.target_id)
+      # activity_data = { :actor => 'chris', :verb => 'add', :object => 'picture:10', :foreign_id => 'picture:10'
       redirect_to follow.target, success: "#{follow_params[:target_type]} successfully followed!"
     else
       redirect_to follow.target, warning: "There was a problem! #{follow_params[:target_type]} was not followed!"

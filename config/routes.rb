@@ -11,6 +11,9 @@ Rails.application.routes.draw do
     resources :reviews, only: [:new, :create]
   end
 
+  resources :users, only: [:show, :create, :new, :edit, :update] do
+    resources :follows, only: [:create, :destroy]
+  end
   resources :venues, only: [:index, :show]
 
   namespace :manager do
@@ -23,6 +26,4 @@ Rails.application.routes.draw do
     get '/edit_venues', to: "venue_wines#edit"
     post '/edit_venues', to: "venue_wines#update"
   end
-
-  resources :follows, only: [:create, :destroy]
 end
