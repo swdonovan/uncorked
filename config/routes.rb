@@ -16,5 +16,8 @@ Rails.application.routes.draw do
     get '/edit_venues', to: "venue_wines#edit"
     post '/edit_venues', to: "venue_wines#update"
   end
-  resources :reviews, only: [:new, :create]
+
+  get '/add_review', to: "reviews#new"
+  post '/add_review', to: "reviews#create"
+  # resources :reviews, only: [:new, :create]
 end
