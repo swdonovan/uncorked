@@ -27,7 +27,7 @@ RSpec.feature "user wants to follow a venue" do
   context "when not logged in" do
     let(:user) { create(:user) }
     let(:venue) { create(:venue) }
-    xit "guest cannot see venue follow link" do
+    it "guest cannot see venue follow link" do
       visit venues_path(venue)
 
       expect(page).to have_content(venue.name)
@@ -35,12 +35,6 @@ RSpec.feature "user wants to follow a venue" do
 
       expect(current_path).to eq(venue_path(venue))
       expect(page).not_to have_link("Follow Venue")
-    end
-    xit "guest is redirected back to homepage with a message" do
-      visit user_venues_path(user)
-
-      expect(current_path).to eq(root_path)
-      expect(page).to have_content("You do not have permissions to access this page.")
     end
   end
 end
