@@ -11,9 +11,13 @@ RSpec.feature "user wants to review wine" do
 
       visit wines_path
 
+
       page.assert_selector('.wines', :count => 1)
 
       expect(html_wines.count).to eq(3)
+
+      page.assert_selector('.wines', :count => 1)
+
 
       within '.wines' do
         click_on test_wine.name
@@ -23,10 +27,12 @@ RSpec.feature "user wants to review wine" do
 
       click_button "Review Wine"
 
+
       expect(current_path).to eq(wine_review_path(test_wine))
       click_button "Review"
 
-      expect(current_path).to eq(new_wine_review)
+
+      expect(current_path).to eq(wine_review_path(test_wine))
 
       fill_in "Description", with: "Nice tannins"
       fill_in "Rating", with: 9
