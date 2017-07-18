@@ -1,6 +1,6 @@
 <%= link_to "Review", new_users_review_path(:reviewable_id => @reviewable.id, :reviewable_type => params["controller"]) %>
-<% if current_user.is_following?(@venue) %>
-  <%= link_to "Unfollow #{@venue.class}", user_follow_path(current_user, current_user.get_follow(@venue)), :method => :delete %>
+<% if current_user.followed(@venue) %>
+  <%= link_to "Unfollow #{@venue.class}", user_follow_path(current_user, current_user.followed(@venue)), :method => :delete %>
 <% else %>
   <% follow_params = {user_id: current_user.id, target_id: @venue.id, target_type: @venue.class} %>
 

@@ -17,12 +17,16 @@ class User < ApplicationRecord
     !(venues & wine.venues).empty?
   end
 
-  def is_following?(target)
-    target.in?(followed_venues) if target.is_a? Venue
+  def followed(target)
+    self.follows.where(target: target).first
   end
 
   def get_follow(target)
     follows.where(target: target)[0]
+  end
+
+  def followers
+    Follow.where(target: self)
   end
 
   # include StreamRails::Activity
