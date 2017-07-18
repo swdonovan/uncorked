@@ -1,17 +1,7 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 <%= link_to "Review", new_users_review_path(:reviewable_id => @reviewable.id, :reviewable_type => params["controller"]) %>
-<%= link_to "Follow Venue", follows_path(user_id: current_user.id, target: @venue), :method => :post %>
-=======
-
-<% follow_params = {user_id: current_user.id, target_id: @venue.id, target_type: @venue.class} %>
-<%= link_to "Follow Venue", follows_path(follow_params), :method => :post %>
->>>>>>> user follows venue successfully passes - still is not accessible from User or Venue models.  Next step is to use the follows model to hook up Streamio and ensure follows/ers are accessible
-=======
-<% follow_params = {user_id: current_user.id, target_id: @venue.id, target_type: @venue.class} %>
 <% if current_user.is_following?(@venue) %>
-  <%= link_to "Unfollow #{@venue.class}", follows_path(follow_params), :method => :destroy %>
+  <%= link_to "Unfollow #{@venue.class}", follow_path(current_user.is_following?(@venue)), :method => :delete %>
 <% else %>
+  <% follow_params = {user_id: current_user.id, target_id: @venue.id, target_type: @venue.class} %>
   <%= link_to "Follow #{@venue.class}", follows_path(follow_params), :method => :post %>
 <% end %>
->>>>>>> update user follows venue to test that the relationship is created and the user has access to .followed_venues

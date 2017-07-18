@@ -19,7 +19,7 @@ class User < ApplicationRecord
   end
 
   def is_following?(target)
-    target.in?(followed_venues)
+    follows.where(target: target)[0] if target.in?(followed_venues)
   end
 
   # include StreamRails::Activity

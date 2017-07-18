@@ -9,6 +9,13 @@ class FollowsController < ApplicationController
     end
   end
 
+  def destroy
+    follow = Follow.find(params[:id])
+    # target = follow.target
+    follow.destroy
+    redirect_to follow.target, success: "#{follow.target.class} successfully unfollowed!"
+  end
+
   private
     def follow_params
       params.permit(:user_id, :target_id, :target_type)
