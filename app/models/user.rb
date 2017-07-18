@@ -12,8 +12,4 @@ class User < ApplicationRecord
   def manager_has_venues_with_wine?(wine)
     !(venues & wine.venues).empty?
   end
-
-  def verified?
-    self.verified
-  end
 end
