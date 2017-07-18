@@ -1,6 +1,8 @@
 FactoryGirl.define do
   factory :follow do
     user
-    target { |a| a.association(:venue) }
+    trait :a_venue do
+      target { |a| a.association(:venue) }
+    end
   end
 end

@@ -35,10 +35,10 @@ RSpec.describe User, type: :model do
       expect(user).to respond_to(:follows)
     end
 
-    it "has many followed" do
+    it "has many followed venues" do
       user = create(:user)
 
-      expect(user).to respond_to(:followed)
+      expect(user).to respond_to(:followed_venues)
     end
   end
 
