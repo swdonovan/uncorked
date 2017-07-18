@@ -10,9 +10,16 @@ class User < ApplicationRecord
   has_many :venues, through: :user_venues
 
   has_many :reviews
+  has_many :follows
+  has_many :followed_venues, :through => :follows, :source => :target,
+   :source_type => 'Venue'
 
   def manager_has_venues_with_wine?(wine)
     !(venues & wine.venues).empty?
+  end
+
+  def is_following?(target)
+    target.in?(followed_venues)
   end
 
   # include StreamRails::Activity

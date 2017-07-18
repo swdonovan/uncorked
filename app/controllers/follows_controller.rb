@@ -1,7 +1,7 @@
 class FollowsController < ApplicationController
 
   def create
-    @follow = Follow.new(follow_params)
+    @follow = current_user.follows.new(follow_params)
     if @follow.save
       redirect_to @follow.target, success: "#{follow_params[:target_type]} successfully followed!"
     else
