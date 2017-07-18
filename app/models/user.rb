@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-  include StreamRails::Activity
-
   has_secure_password
 
   validates_presence_of :first_name, :last_name, :username, :email, :phone_number, :password
@@ -17,16 +15,18 @@ class User < ApplicationRecord
     !(venues & wine.venues).empty?
   end
 
-  def follow_wine(wine_id)
-    StreamRails.feed_manager.follow_wine(id, wine_id)
-  end
+  # include StreamRails::Activity
 
-  def feed
-    enricher = StreamRails::Enrich.new
-    feed = StreamRails.feed_manager.get_news_feeds(id)[:flat]
-    results = feed.get()['results']
-    activities = enricher.enrich_activities(results)
-  end
+  # def follow_wine(wine_id)
+  #   StreamRails.feed_manager.follow_wine(id, wine_id)
+  # end
+  #
+  # def feed
+  #   enricher = StreamRails::Enrich.new
+  #   feed = StreamRails.feed_manager.get_news_feeds(id)[:flat]
+  #   results = feed.get()['results']
+  #   activities = enricher.enrich_activities(results)
+  # end
 
   # def activity_actor
   #   "#{self.first_name} #{self.last_name}"

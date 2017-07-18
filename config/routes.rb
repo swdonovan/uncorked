@@ -24,4 +24,5 @@ Rails.application.routes.draw do
     post '/edit_venues', to: "venue_wines#update"
   end
 
+  resources :follows, only: [:create]
 end
