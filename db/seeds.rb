@@ -19,7 +19,7 @@ def create_users
 end
 
 def create_fake_users
-  100.times do
+  1000.times do
     user = User.new
     user.first_name = Faker::Name.first_name
     user.last_name = Faker::Name.last_name
