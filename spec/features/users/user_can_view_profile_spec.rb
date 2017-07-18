@@ -22,7 +22,11 @@ RSpec.feature "user can view profile" do
   end
 
   context "when not logged in" do
-    it "user is redirected to login"
+    let(:user) { create(:user) }
+    it "user is redirected to login" do
+      visit user_path(user)
 
+      expect(current_path).to eq(login_path)
+    end
   end
 end
