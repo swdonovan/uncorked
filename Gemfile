@@ -26,6 +26,10 @@ gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'geocoder'
+# Use Authy for sending token
+gem 'authy'
+# Use Twilio to send confirmation message
+gem 'twilio-ruby', '~>5.0.0'
 
 
 group :development, :test do

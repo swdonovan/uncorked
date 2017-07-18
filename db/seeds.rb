@@ -4,7 +4,7 @@ Wine.destroy_all
 
 def create_users
   users = [
-    ["Doug", "Miller", "dmiller", "doug@dmail.com", "I like big trucks and I like fine wine", "303-111-2222", "trucks4lyfe"]
+    ["Doug", "Miller", "dmiller", "doug@dmail.com", "I like big trucks and I like fine wine", "303-111-2222", "trucks4lyfe", '1']
     ]
   users.each do |user|
     User.create!(first_name: user[0],
@@ -13,7 +13,8 @@ def create_users
                  email: user[3],
                  bio: user[4],
                  phone_number: user[5],
-                 password: user[6])
+                 password: user[6],
+                 country_code: user[7])
     puts "User #{user[0]} #{user[1]} created"
   end
 end
@@ -28,6 +29,7 @@ def create_fake_users
     user.bio = Faker::Witcher.quote
     user.phone_number = Faker::PhoneNumber.phone_number
     user.password = Faker::Internet.password
+    user.country_code = '1'
     user.save
     puts "User #{user.first_name} #{user.last_name} created"
   end
@@ -35,7 +37,7 @@ end
 
 def create_managers
   users = [
-    ["Dave", "Miller", "davemiller", "dave@davemail.com", "I like fine wine", "303-111-2222", "wine4lyfe"]
+    ["Dave", "Miller", "davemiller", "dave@davemail.com", "I like fine wine", "303-111-2222", "wine4lyfe", 1]
     ]
   users.each do |user|
     User.create!(first_name: user[0],
@@ -45,7 +47,8 @@ def create_managers
                  bio: user[4],
                  phone_number: user[5],
                  password: user[6],
-                 role: 1)
+                 role: 1,
+                 country_code: '1')
     puts "Manager #{user[0]} #{user[1]} created"
   end
 end
@@ -61,6 +64,7 @@ def create_fake_managers
     user.phone_number = Faker::PhoneNumber.phone_number
     user.password = Faker::Internet.password
     user.role = 1
+    user.country_code = '1'
     user.save
     puts "Manager #{user.first_name} #{user.last_name} created"
   end
@@ -70,6 +74,9 @@ def create_admin
   User.create(first_name: 'Admin',
               last_name: 'Of The Site',
               email: 'admin@admin.com',
+              username: 'admin',
+              phone_number: '303-231-7026',
+              country_code: '1',
               password: 'password',
               role: 2)
   puts "Created admin user"

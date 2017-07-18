@@ -1,6 +1,12 @@
 <% if current_user %>
   <%= link_to "Edit Profile", edit_user_path(current_user) %>
 <% end %>
+<p>Account Status: <% if @user.verified? %>Verified<% else -%>Not Verified<% end -%>
+<% if !@user.verified? %>
+<p>
+  <%= link_to "Verify your account now.", verify_path %>
+</p>
+<% end -%>
 <%= current_user.email %>
 <%= current_user.bio %>
 

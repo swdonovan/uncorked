@@ -1,18 +1,38 @@
 <%= form_for @user do |f| %>
   <%= render partial: 'shared/errors', locals: { target: @user } %>
-  <%= f.label(:first_name) %>
-  <%= f.text_field(:first_name) %>
-  <%= f.label(:last_name) %>
-  <%= f.text_field(:last_name) %>
-  <%= f.label(:username) %>
-  <%= f.text_field(:username) %>
-  <%= f.label(:email) %>
-  <%= f.text_field(:email) %>
-  <%= f.label(:phone_number) %>
-  <%= f.text_field(:phone_number) %>
-  <%= f.label(:bio, "Biography") %>
-  <%= f.text_area(:bio) %>
-  <%= f.label(:password) %>
-  <%= f.text_field(:password) %>
-  <%= f.submit %>
+  <div class="row">
+    <%= f.label(:first_name) %>
+    <%= f.text_field(:first_name) %>
+  </div>
+  <div class="row">
+    <%= f.label(:last_name) %>
+    <%= f.text_field(:last_name) %>
+  </div>
+  <div class="row">
+    <%= f.label(:username) %>
+    <%= f.text_field(:username) %>
+  </div>
+  <div class="row">
+    <%= f.label(:email) %>
+    <%= f.text_field(:email) %>
+  </div>
+  <div class="row">
+    <div class="col s2">
+      <%= f.label :country_code %>
+      <%= f.text_field :country_code, class: "form-control", id: "authy-countries" %>
+    </div>
+    <div class="col s10">
+      <%= f.label :phone_number %>
+      <%= f.text_field :phone_number, class: "form-control", id: "authy-cellphone" %>
+    </div>
+  </div>
+  <div class="row">
+    <%= f.label(:bio, "Biography") %>
+    <%= f.text_area(:bio) %>
+  </div>
+  <div class="row">
+    <%= f.label(:password) %>
+    <%= f.text_field(:password) %>
+  </div>
+  <%= f.submit 'Submit', class: 'waves-effect waves-light btn' %>
 <% end %>

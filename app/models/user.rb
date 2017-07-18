@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_secure_password
 
-  validates_presence_of :first_name, :last_name, :username, :email, :phone_number, :password
+  validates_presence_of :first_name, :last_name, :username, :email, :phone_number, :password, :country_code
   validates_uniqueness_of :username
 
   enum role: %w(member manager admin)
@@ -11,5 +11,9 @@ class User < ApplicationRecord
 
   def manager_has_venues_with_wine?(wine)
     !(venues & wine.venues).empty?
+  end
+
+  def verified?
+    self.verified
   end
 end
