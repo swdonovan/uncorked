@@ -24,9 +24,10 @@ RSpec.feature "user wants to review wine" do
       end
 
       expect(current_path).to eq(wine_path(test_wine))
-      save_and_open_page
+
       click_link "Review Wine"
 
+<<<<<<< HEAD
 
       expect(current_path).to eq(wine_review_path(test_wine))
       click_button "Review"
@@ -34,6 +35,10 @@ RSpec.feature "user wants to review wine" do
 
       expect(current_path).to eq(wine_review_path(test_wine))
       binding.pry
+=======
+      expect(current_path).to eq(add_review_path(test_wine))
+
+>>>>>>> add reviews views directory
       fill_in "Description", with: "Nice tannins"
       fill_in "Rating", with: 9
       click_button "Submit Review"

@@ -1,0 +1,8 @@
+<%= form_tag( add_review_path(@wine), method: :post) do |f| %>
+  <%= hidden_field_tag(@wine)
+  <%= label_tag(:description) %>
+  <%= text_field_tag(:description) %>
+  <%= label_tag(:rating) %>
+  <%= text_field_tag(:rating) %>
+  <%= submit_tag "Submit Review" %>
+<% end %>
