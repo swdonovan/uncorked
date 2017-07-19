@@ -8,8 +8,16 @@ class FollowsController < ApplicationController
 
     follow = current_user.follows.new(target: target)
     if follow.save
-      StreamRails.client.feed('user', current_user.id).follow(follow.target_feed, follow.target_id)
-      # activity_data = { :actor => 'chris', :verb => 'add', :object => 'picture:10', :foreign_id => 'picture:10'
+      user_feed = StreamRails.client.feed('user', current_user.id)
+      user_feed.follow(follow.target_feed, follow.target_id)
+      activity_data = {
+        actor: "#{current_user.class}:#{current_user.id}",
+        verb: 'follow',
+        object: "#{target.class}:#{target.id}",
+        foreign_id: "#{target.class}:#{target.id}",
+        time: DateTime.now
+      }      
+      activity_response = user_feed.add_activity(activity_data)
       redirect_to follow.target, success: "#{follow_params[:target_type]} successfully followed!"
     else
       redirect_to follow.target, warning: "There was a problem! #{follow_params[:target_type]} was not followed!"
