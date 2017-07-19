@@ -4,7 +4,6 @@ class UserFollowsController < ApplicationController
   end
 
   def create
-    binding.pry
     @follow = Venue.find(params["format"])
     if @venue.save
       redirect_to user_venues_path(current_user), success: "Venue successfully followed!"
