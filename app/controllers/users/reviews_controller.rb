@@ -1,15 +1,15 @@
 class Users::ReviewsController < ApplicationController
   def new
     @review = Review.new
-    # params["reviewable_type"] = params["reviewable_type"].chomp('s')
   end
 
   def create
-    if params["review"]["reviewable_type"] == "wines"
-      wine = Wine.find(params["review"]["reviewable_id"])
+    reviewable = params["review"]
+    if reviewable["reviewable_type"] == "wines"
+      wine = Wine.find(reviewable["reviewable_id"])
       review = wine.reviews.create(review_params)
     else
-      venue  = Venue.find(params["review"]["reviewable_id"])
+      venue  = Venue.find(reviewable["reviewable_id"])
       review = venue.reviews.create(review_params)
     end
     if review.save
