@@ -31,7 +31,6 @@ class User < ApplicationRecord
 
   def news_feed
     enricher = StreamRails::Enrich.new
-    # feed = StreamRails.feed_manager.get_user_feed(id)
     feed = StreamRails.feed_manager.get_news_feeds(id)[:flat]
     results = feed.get()['results']
     enricher.enrich_activities(results)

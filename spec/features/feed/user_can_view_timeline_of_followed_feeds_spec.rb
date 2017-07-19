@@ -14,17 +14,29 @@ RSpec.feature "user wants to view timeline of followed feeds" do
         expect(page).to have_content "No activity."
       end
     end
-    context "when a user they follow follows a venue" do
-      let!(:follow) { create(:follow, :a_user) }
-      let!(:follow_venue) { create(:follow, :a_venue, user: follow.target)}
-      it "the user sees can see another the follow" do
-        user = follow.user
-        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+    context "when a venue they follow gets followed" do
+      let!(:user1) { create(:user) }
+      let!(:user2) { create(:user) }
+      let!(:target) { create(:venue) }
+      it "the user sees can see another's follow" do
+        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user1)
+        visit venue_path(target)
+        click_on "Follow Venue"
 
-        visit user_path(user)
+        expect(page).to have_content("Venue successfully followed!")
+
+        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user2)
+        visit venue_path(target)
+        click_on "Follow Venue"
+
+        expect(page).to have_content("Venue successfully followed!")
+
+        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user1)
+
+        visit user_path(user1)
 
         expect(page).to have_content "News Feed"
-        expect(page).to have_content "#{follow.target.first_name} #{follow.target.last_name} followed #{follow_venue.target.name}"
+        expect(page).to have_content "#{user2.first_name} #{user2.last_name} followed #{target.name}"
       end
     end
   end

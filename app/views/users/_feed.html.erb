@@ -2,7 +2,9 @@
 <div class="container">
     <div class="collection">
         <% if current_user.news_feed.empty? %>
-          <p>No activity.</p>
+          <article class="collection-item">
+            <p class="title">No activity.</p>
+          </article>
         <% else %>
           <% for activity in current_user.news_feed %>
               <%= render_activity activity %>

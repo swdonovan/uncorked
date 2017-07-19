@@ -7,14 +7,14 @@ class Follow < ApplicationRecord
   end
 
   def report_follow
-    user_feed = StreamRails.client.feed('timeline', user_id)
+    user_feed = StreamRails.client.feed('user', user_id)
     user_feed.follow(target_feed_name, target_id)
     activity_data = default_activitiy_data.merge( verb: 'follow' )
     activity_response = user_feed.add_activity(activity_data)
   end
 
   def report_unfollow
-    user_feed = StreamRails.client.feed('timeline', user_id)
+    user_feed = StreamRails.client.feed('user', user_id)
     user_feed.unfollow(target_feed_name, target_id)
     activity_data = default_activitiy_data.merge( verb: 'unfollow' )
     activity_response = user_feed.add_activity(activity_data)
