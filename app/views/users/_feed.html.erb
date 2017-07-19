@@ -1,7 +1,12 @@
+<h3>News Feed</h3>
 <div class="container">
     <div class="container-events">
-        <% for activity in @activities %>
-            <%= render_activity activity %>
+        <% if current_user.news_feed.empty? %>
+          <p>No activity.</p>
+        <% else %>
+          <% for activity in current_user.news_feed %>
+              <%= render_activity activity %>
+          <% end %>
         <% end %>
     </div>
 </div>

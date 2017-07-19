@@ -29,6 +29,13 @@ class User < ApplicationRecord
     Follow.where(target: self)
   end
 
+  def news_feed
+    enricher = StreamRails::Enrich.new
+    feed = StreamRails.feed_manager.get_news_feeds(id)[:flat]
+    results = feed.get()['results']
+    enricher.enrich_activities(results)
+  end
+
   # include StreamRails::Activity
 
   # def follow_wine(wine_id)
