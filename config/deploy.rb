@@ -25,7 +25,7 @@ set :puma_init_active_record, false  # Change to true if using ActiveRecord
 
 ## Defaults:
 # set :scm,           :git
-set :branch,          :'twilio-2fa'
+# set :branch,          :'twilio-2fa'
 # set :format,        :pretty
 # set :log_level,     :debug
 # set :keep_releases, 5
