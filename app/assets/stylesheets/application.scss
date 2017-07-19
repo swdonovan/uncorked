@@ -8,3 +8,28 @@
   min-height: 300px;
   min-width: 300px;
 }
+
+.toast {
+  border-radius: 24px;
+
+  &.success {
+    background-color: green;
+  }
+
+  &.danger {
+    background-color: orange;
+  }
+
+  &.warning {
+    background-color: orange;
+  }
+
+  &.error {
+    background-color: red;
+  }
+
+  &.info {
+    background-color: blue;
+  }
+  
+}
