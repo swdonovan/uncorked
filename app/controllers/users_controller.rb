@@ -57,8 +57,7 @@ class UsersController < ApplicationController
     if token.ok?
       @user.update(verified: true)
 
-      send_message("You did it! Signup complete :)")
-
+      flash[:success] = "You successfully verified your account!"
       redirect_to user_path(@user.id)
     else
       flash.now[:danger] = "Incorrect code, please try again"
