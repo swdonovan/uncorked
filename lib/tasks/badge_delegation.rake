@@ -1,7 +1,6 @@
 namespace :badge_delegation do
   desc "Check all users for eligibility of a badge"
   task check_eligibility: :environment do
-
     # eligible = User.joins(:reviews).where(reviews.count) == 10
   end
 
