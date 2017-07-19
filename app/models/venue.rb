@@ -1,4 +1,7 @@
 class Venue < ApplicationRecord
+  validates_presence_of :name, :street_address, :city, :state, :zip
+  validates_uniqueness_of :name
+
   has_many :user_venues
   has_many :managers, through: :user_venues, source_type: "User"
 
