@@ -1,0 +1,5 @@
+<% if current_user.venues %>
+  <%= link_to "Edit Venues", edit_manager_venue_path(@venue) %>
+<% else %>
+  <%= link_to "Add to Venue", new_manager_venue_path %>
+<% end %>
