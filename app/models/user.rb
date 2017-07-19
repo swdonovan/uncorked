@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_secure_password
 
-  validates_presence_of :first_name, :last_name, :username, :email, :phone_number, :password, :country_code
+  validates_presence_of :first_name, :last_name, :username, :email, :phone_number, :country_code
   validates_uniqueness_of :username
 
   enum role: %w(member manager admin)

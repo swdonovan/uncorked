@@ -52,17 +52,13 @@ class UsersController < ApplicationController
   def verify
     @user = current_user
 
-    # Use Authy to send the verification token
     token = Authy::API.verify(id: @user.authy_id, token: params[:token])
 
     if token.ok?
-      # Mark the user as verified for get /user/:id
       @user.update(verified: true)
 
-      # Send an SMS to the user 'success'
       send_message("You did it! Signup complete :)")
 
-      # Show the user profile
       redirect_to user_path(@user.id)
     else
       flash.now[:danger] = "Incorrect code, please try again"
