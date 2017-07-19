@@ -4,7 +4,7 @@ class Wine < ApplicationRecord
 
   has_many :venue_wines
   has_many :venues, through: :venue_wines
-
+  has_many :reviews, as: :reviewable
   def self.text_search(query)
     self.where("similarity(name, ?) > 0.15", query).order("similarity(name, #{ActiveRecord::Base.connection.quote(query)}) DESC")
   end

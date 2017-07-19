@@ -9,7 +9,14 @@ class User < ApplicationRecord
   has_many :user_venues, as: :manager
   has_many :venues, through: :user_venues
 
+  has_many :reviews, as: :reviewable
+
   def manager_has_venues_with_wine?(wine)
     !(venues & wine.venues).empty?
   end
+
+  # def create_review(review_params)
+  #   @review = Review.new
+  #
+  # end
 end

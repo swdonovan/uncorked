@@ -10,11 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170717152818) do
+ActiveRecord::Schema.define(version: 20170718210054) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pg_trgm"
+
+  create_table "reviews", force: :cascade do |t|
+    t.text "description"
+    t.integer "rating"
+    t.bigint "user_id"
+    t.string "reviewable_type"
+    t.bigint "reviewable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["reviewable_type", "reviewable_id"], name: "index_reviews_on_reviewable_type_and_reviewable_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
 
   create_table "user_venues", force: :cascade do |t|
     t.bigint "venue_id"
@@ -69,6 +81,7 @@ ActiveRecord::Schema.define(version: 20170717152818) do
     t.index ["name"], name: "index_wines_on_name"
   end
 
+  add_foreign_key "reviews", "users"
   add_foreign_key "user_venues", "venues"
   add_foreign_key "venue_wines", "venues"
   add_foreign_key "venue_wines", "wines"
