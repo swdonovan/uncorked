@@ -23,15 +23,9 @@ RSpec.describe User, type: :model do
   end
 
   context "relationships" do
-    xit "belongs to ..." do
-      user = create(:user)
-
-      expect(user).to respond_to(:model)
-    end
-
     it "has many venues" do
       user = create(:user)
-
+      
       expect(user).to respond_to(:venues)
     end
   end

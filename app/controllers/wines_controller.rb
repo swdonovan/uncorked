@@ -12,6 +12,7 @@ class WinesController < ApplicationController
   end
 
   def show
+    @reviewable = @wine
   end
 
   private
