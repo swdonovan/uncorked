@@ -1,10 +1,5 @@
-<div id="wrapper">
-  <div class="col-lg-12">
-      <p>
-        <%= link_to "#{activity['actor'].first_name} #{activity['actor'].last_name}", user_path(activity['actor']) %>
-        <%= "#{activity['verb']}ed" %>
-        <%= link_to activity['object'].name, send("#{activity['object'].class.to_s.downcase}_path", activity['object']) %>
-      </p>
-      <p class="timestamp"><%= localize(DateTime.parse(activity['time']), format: :long) %></p>
-  </div>
-</div>
+<span class="title"><%= link_to "#{activity['actor'].first_name} #{activity['actor'].last_name}", user_path(activity['actor']) %></span>
+<p><%= "#{activity['verb']}ed" %>
+  <%= link_to activity['object'].name, send("#{activity['object'].class.to_s.downcase}_path", activity['object']) %><br/>
+  <span class="timestamp"><%= localize(DateTime.parse(activity['time']), format: :long) %></span>
+</p>
