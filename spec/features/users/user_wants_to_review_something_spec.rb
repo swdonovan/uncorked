@@ -51,7 +51,8 @@ RSpec.feature "user wants to review..." do
         visit venues_path
         page.assert_selector('.venue', :count => 3)
 
-        within '.venue' do
+
+        within '.venues' do
           click_on test_venue.name
         end
 

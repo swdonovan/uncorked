@@ -1,2 +1,1 @@
-<!-- <%= link_to "Review", new_users_review_path(@wine || @venue) %> -->
 <%= link_to "Review", new_users_review_path(:reviewable_id => @reviewable.id, :reviewable_type => params["controller"]) %>

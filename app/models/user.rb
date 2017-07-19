@@ -15,8 +15,4 @@ class User < ApplicationRecord
     !(venues & wine.venues).empty?
   end
 
-  # def create_review(review_params)
-  #   @review = Review.new
-  #
-  # end
 end
