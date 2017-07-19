@@ -5,7 +5,6 @@ RSpec.feature "Managers can edit venues" do
     let(:manager) { create(:user, :as_manager) }
     it "Manager can edit a venue" do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(manager)
-      # binding.pry
       venue = manager.venues.create!(
                     name: "Bistro for the Plebs",
                     street_address: "123 Hollywood Pl",
