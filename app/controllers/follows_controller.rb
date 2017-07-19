@@ -8,16 +8,7 @@ class FollowsController < ApplicationController
 
     follow = current_user.follows.new(target: target)
     if follow.save
-      user_feed = StreamRails.client.feed('user', current_user.id)
-      user_feed.follow(follow.target_feed, follow.target_id)
-      activity_data = {
-        actor: "#{current_user.class}:#{current_user.id}",
-        verb: 'follow',
-        object: "#{target.class}:#{target.id}",
-        foreign_id: "#{target.class}:#{target.id}",
-        time: DateTime.now
-      }      
-      activity_response = user_feed.add_activity(activity_data)
+      follow.report_follow
       redirect_to follow.target, success: "#{follow_params[:target_type]} successfully followed!"
     else
       redirect_to follow.target, warning: "There was a problem! #{follow_params[:target_type]} was not followed!"
@@ -28,7 +19,7 @@ class FollowsController < ApplicationController
     follow = Follow.find(params[:id])
     session[:return_to] ||= request.referer
     if follow.user_id == current_user.id
-      StreamRails.client.feed('user', current_user.id).unfollow(follow.target_feed, follow.target_id)
+      follow.report_unfollow
       follow.destroy
       redirect_to session.delete(:return_to), success: "#{follow.target.class} successfully unfollowed!"
     else
