@@ -36,34 +36,4 @@ class User < ApplicationRecord
     results = feed.get()['results']
     enricher.enrich_activities(results)
   end
-
-  # include StreamRails::Activity
-
-  # def follow_wine(wine_id)
-  #   StreamRails.feed_manager.follow_wine(id, wine_id)
-  # end
-  #
-  # def feed
-  #   enricher = StreamRails::Enrich.new
-  #   feed = StreamRails.feed_manager.get_news_feeds(id)[:flat]
-  #   results = feed.get()['results']
-  #   activities = enricher.enrich_activities(results)
-  # end
-
-  # def activity_actor
-  #   "#{self.first_name} #{self.last_name}"
-  # end
-  #
-  # def activity_object
-  #
-  # end
-  #
-  # def follow(id, type)
-  #   case type
-  #   when "wine"
-  #     Wine.find(id)
-  #   when "venue"
-  #     Venue.find(id)
-  #   end
-  # end
 end
