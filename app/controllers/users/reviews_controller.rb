@@ -13,6 +13,7 @@ class Users::ReviewsController < ApplicationController
       review = venue.reviews.create(review_params)
     end
     if review.save
+      review.report_review
       flash[:success] = "Review successfully submitted!"
       redirect_to user_path(current_user)
     else
