@@ -34,7 +34,7 @@ RSpec.feature "user wants to follow a venue" do
       click_on(venue.name)
 
       expect(current_path).to eq(venue_path(venue))
-      # expect(page).not_to have_link("Follow Venue")
+      expect(page).not_to have_link("Follow Venue")
     end
   end
 end
