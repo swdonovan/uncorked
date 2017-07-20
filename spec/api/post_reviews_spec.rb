@@ -19,11 +19,17 @@ describe "POST /api/v1/reviews" do
 
       visit wine_path(wine)
 
-      expect(page).to have_link("Create API Review")
+      expect(page).to have_link("Create Review via API", href: new_api_v1_review)
 
-      click_link "Create API Review"
+      click_link "Create Review via API"
 
-      expect(current_path).to eq()
+      expect(current_path).to eq(new_api_v1_review)
+      expect(page).to have_link()
+
+      fill_in "Description", with: "Had better"
+      fill_in "Rating", with: 4
+      click_button "Create Review"
+      
 
     end
 
