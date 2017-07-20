@@ -11,13 +11,17 @@ class User < ApplicationRecord
 
   has_many :user_badges
   has_many :badges, through: :user_badges
-  
+
   has_many :reviews
   has_many :follows
   has_many :followed_venues, :through => :follows, :source => :target, :source_type => 'Venue'
 
   def verified?
     verified
+  end
+
+  def name
+    "#{first_name} #{last_name}"
   end
 
   def manager_has_venues_with_wine?(wine)
