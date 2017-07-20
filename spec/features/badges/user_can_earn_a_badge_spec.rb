@@ -5,14 +5,14 @@ RSpec.feature "User can earn a badge" do
     context "after leaving 10 reviews" do
       let(:user) { create(:user) }
       let!(:wine) { create(:wine) }
-      it "you earn a badge and it appears on your profile" do
+      it "you earn all star performer badge and it appears on your profile" do
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
         badge = create(:badge)
         10.times do
           counter = 1
 
           visit wines_path
-          
+
           click_link wine.name
 
           click_link "Review"
