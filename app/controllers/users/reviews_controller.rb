@@ -15,7 +15,7 @@ class Users::ReviewsController < ApplicationController
     if review.save
       flash[:success] = "Review successfully submitted!"
       redirect_to user_path(current_user)
-      badge_allocation
+      Badge.badge_allocation(current_user)
     else
       render :new
     end
@@ -24,13 +24,5 @@ class Users::ReviewsController < ApplicationController
   private
     def review_params
       params.require(:review).permit(:description, :rating, :user_id, :reviewable_id, :reviewable_type)
-    end
-
-    def badge_allocation
-      if current_user.reviews.count == 10
-        star_performer = Badge.where(name: "All Star Performer")
-        current_user.badges << star_performer
-        flash[:success] = "You just received the 'All Star Reviewer' Badge!"
-      end
     end
 end
