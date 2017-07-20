@@ -12,7 +12,7 @@ Should have
     <% current_user.badges.each do |badge| %>
     <li>
       <p><%= badge.name %></p>
-      <%= image_tag("#{badge.name}.jpg") %>
+      <%= image_tag("/images/#{badge.name.parameterize}.png") %>
     </li>
     <% end %>
   </ul>
