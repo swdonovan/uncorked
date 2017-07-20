@@ -1,0 +1,9 @@
+<h3><%= @user.first_name %> <%= @user.last_name %></h3>
+<% if current_user %>
+  <%= render partial: "users/follow/#{current_user.role}_follow" %>
+<% elsif current_user.admin? %>
+<% end %>
+<%= @user.email %>
+<%= @user.bio %>
+
+<%= render partial: "users/roles/#{@user.role}", locals: {user: @user} %>

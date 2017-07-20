@@ -13,6 +13,14 @@ class User < ApplicationRecord
   has_many :follows
   has_many :followed_venues, :through => :follows, :source => :target, :source_type => 'Venue'
 
+  def disable
+    self.update(disabled: !disabled)
+  end
+
+  def disabled?
+    disabled
+  end
+
   def verified?
     verified
   end
