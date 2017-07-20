@@ -10,21 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20170718210054) do
-=======
-ActiveRecord::Schema.define(version: 20170718041946) do
->>>>>>> clear failing tests and setup follows table
-=======
-ActiveRecord::Schema.define(version: 20170718150906) do
->>>>>>> add follows model spec and add timestamps to follow table so Streamio works
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pg_trgm"
 
-<<<<<<< HEAD
+  create_table "follows", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "target_type"
+    t.bigint "target_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["target_type", "target_id"], name: "index_follows_on_target_type_and_target_id"
+    t.index ["user_id"], name: "index_follows_on_user_id"
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.text "description"
     t.integer "rating"
@@ -35,16 +36,6 @@ ActiveRecord::Schema.define(version: 20170718150906) do
     t.datetime "updated_at", null: false
     t.index ["reviewable_type", "reviewable_id"], name: "index_reviews_on_reviewable_type_and_reviewable_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
-=======
-  create_table "follows", force: :cascade do |t|
-    t.bigint "user_id"
-    t.string "target_type"
-    t.bigint "target_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["target_type", "target_id"], name: "index_follows_on_target_type_and_target_id"
-    t.index ["user_id"], name: "index_follows_on_user_id"
->>>>>>> clear failing tests and setup follows table
   end
 
   create_table "user_venues", force: :cascade do |t|
@@ -100,11 +91,8 @@ ActiveRecord::Schema.define(version: 20170718150906) do
     t.index ["name"], name: "index_wines_on_name"
   end
 
-<<<<<<< HEAD
-  add_foreign_key "reviews", "users"
-=======
   add_foreign_key "follows", "users"
->>>>>>> clear failing tests and setup follows table
+  add_foreign_key "reviews", "users"
   add_foreign_key "user_venues", "venues"
   add_foreign_key "venue_wines", "venues"
   add_foreign_key "venue_wines", "wines"
