@@ -153,6 +153,10 @@ def create_fake_wines
   end
 end
 
+def create_badge
+  Badge.create(name: "All Star Reviewer", description: "You are a contributing community member. You have given at least 10 reviews.")
+end
+
 create_users
 create_fake_users
 create_managers
@@ -162,3 +166,4 @@ create_venues
 create_fake_venues
 create_wines
 create_fake_wines
+create_badge
