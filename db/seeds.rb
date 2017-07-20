@@ -28,7 +28,7 @@ def create_fake_users
     user.email = Faker::Internet.email
     user.bio = Faker::ChuckNorris.fact
     user.phone_number = Faker::PhoneNumber.phone_number
-    user.password = Faker::Internet.password
+    user.password = "password"
     user.country_code = '1'
     user.save
     puts "User #{user.first_name} #{user.last_name} created"
@@ -61,7 +61,7 @@ def create_fake_managers
     user.username = Faker::Internet.user_name("#{user.first_name} #{user.last_name}", %w(. _ -))
     user.email = Faker::Internet.email
     user.phone_number = Faker::PhoneNumber.phone_number
-    user.password = Faker::Internet.password
+    user.password = "password"
     user.role = 1
     user.country_code = '1'
     user.save
@@ -157,13 +157,34 @@ def create_badge
   Badge.create(name: "All Star Reviewer", description: "You are a contributing community member. You have given at least 10 reviews.")
 end
 
-create_users
+def wine_sample
+  first = Wine.first.id
+  last = Wine.last.id
+  wines = (first..last).to_a
+  wines.sample
+end
+
+def venue_sample
+  first = Venue.first.id
+  last = Venue.last.id
+  venues = (first..end).to_a
+  venues.sample
+end
+
+def create_wine_review_for_user(user)
+
+end
+
+def create_venue_review_for_user(user)
+end
+
+# create_users
+# create_managers
+create_fake_venues
+create_venues
+create_fake_wines
+create_wines
 create_fake_users
-create_managers
 create_fake_managers
 create_admin
-create_venues
-create_fake_venues
-create_wines
-create_fake_wines
 create_badge
