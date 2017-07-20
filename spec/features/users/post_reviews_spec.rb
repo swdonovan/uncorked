@@ -9,11 +9,9 @@ RSpec.feature "POST /api/v1/reviews" do
 
       visit wine_path(wine)
 
-      expect(page).to have_content("Create Review via API", href: new_api_v1_review)
-
       click_link "Create Review via API"
 
-      expect(current_path).to eq(new_api_v1_review)
+      expect(current_path).to eq(new_api_v1_review_path)
 
       fill_in "Description", with: "Had better"
       fill_in "Rating", with: 4
@@ -36,7 +34,7 @@ RSpec.feature "POST /api/v1/reviews" do
 
       click_link "Create Review via API"
 
-      expect(current_path).to eq(new_api_v1_review)
+      expect(current_path).to eq(new_api_v1_review_path)
 
       fill_in "Description", with: "Had better"
       fill_in "Rating", with: 4
