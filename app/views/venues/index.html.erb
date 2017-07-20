@@ -1,9 +1,16 @@
-<div class="venues">
-  <% @venues.each do |venue| %>
-    <div class="venue">
-      <p><%= link_to venue.name, venue_path(venue) %></p>
-      <%= render partial: 'venues/venue_details', locals: {venue: venue} %>
-    </div>
-  <% end %>
+<div class="row">
+  <div class="venues">
+    <% @venues.each do |venue| %>
+      <div class="card col s12 m4">
+        <div class="card-content venue">
+          <span class="card-title"><%= link_to venue.name, venue_path(venue) %></span>
+          <%= render partial: 'venues/venue_details', locals: {venue: venue} %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
-<%= will_paginate @venues %>
+
+<div class="row">
+  <%= will_paginate @venues %>
+</div>
