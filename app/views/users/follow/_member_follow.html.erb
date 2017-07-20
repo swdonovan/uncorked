@@ -1,0 +1,7 @@
+<% if current_user.followed(@user) %>
+  <%= link_to "Unfollow #{@user.class}", user_follow_path(current_user, current_user.followed(@user)), :method => :delete, class:"waves-effect waves-light btn-large" %>
+<% else %>
+  <% follow_params = {user_id: current_user.id, target_id: @user.id, target_type: @user.class} %>
+
+  <%= link_to "Follow #{@user.class}", user_follows_path(current_user, follow_params), :method => :post, class:"waves-effect waves-light btn-large" %>
+<% end %>
