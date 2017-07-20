@@ -167,16 +167,33 @@ end
 def venue_sample
   first = Venue.first.id
   last = Venue.last.id
-  venues = (first..end).to_a
+  venues = (first..last).to_a
   venues.sample
 end
 
-def create_wine_review_for_user(user)
+def rating
+  batch = (1..10).to_a
+  batch.sample
+end
 
+def create_wine_review_for_user(user)
+  wine =  Wine.find(wine_sample)
+  wine.reviews.create(
+                      user_id: user.id,
+                      rating: rating,
+                      description: Faker::Hipster.sentence
+                      )
 end
 
 def create_venue_review_for_user(user)
+  venue = Venue.find(venue_sample)
+  venue.reviews.create(
+                      user_id: user.id,
+                      rating: rating,
+                      description: Faker::Hipster.sentence
+                      )
 end
+
 
 # create_users
 # create_managers
