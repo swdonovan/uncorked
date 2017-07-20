@@ -7,6 +7,7 @@ RSpec.feature "user wants to view timeline of followed feeds" do
       let(:user) { create(:user) }
       it 'the user sees that they have no activity' do
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+        allow_any_instance_of(User).to receive(:news_feed).and_return([])
 
         visit user_path(user)
 

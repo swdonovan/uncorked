@@ -9,7 +9,7 @@ RSpec.feature "user wants to see their number of follows" do
 
       visit user_path(user)
 
-      # expect(page).to have_content("Following: 3")
+      expect(page).to have_content("Following: 3")
     end
   end
   context "when there are other users who follow things" do
@@ -21,7 +21,7 @@ RSpec.feature "user wants to see their number of follows" do
 
       visit user_path(user)
 
-      # expect(page).to have_content("Following: 1")
+      expect(page).to have_content("Following: 1")
     end
   end
 end
