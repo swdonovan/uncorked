@@ -12,9 +12,22 @@ And I should see all the reviews for that objects (wine/venue#show)
 =end
 describe "POST /api/v1/reviews" do
   context "POST a wine review" do
+    let(:user) { create{:user) }
+    let(:wine) { create(:wine) }
     it "posts review via API" do
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
+      visit wine_path(wine)
+
+      expect(page).to have_link("Create API Review")
+
+      click_link "Create API Review"
+
+      expect(current_path).to eq()
 
     end
+
+
 
   end
   context "POST a venue review" do
