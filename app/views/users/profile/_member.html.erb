@@ -7,5 +7,6 @@ Should have
 - Feed
 -->
 
-Your Followers
-Following
+<p>Your Followers: <%= current_user.followers.count %></p>
+<p>You are Following: <%= current_user.follows.count %></p>
+<%= render partial: "users/feed" %>
