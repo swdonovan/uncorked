@@ -16,6 +16,16 @@ ActiveRecord::Schema.define(version: 20170718210054) do
   enable_extension "plpgsql"
   enable_extension "pg_trgm"
 
+  create_table "follows", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "target_type"
+    t.bigint "target_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["target_type", "target_id"], name: "index_follows_on_target_type_and_target_id"
+    t.index ["user_id"], name: "index_follows_on_user_id"
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.text "description"
     t.integer "rating"
@@ -85,6 +95,7 @@ ActiveRecord::Schema.define(version: 20170718210054) do
     t.index ["name"], name: "index_wines_on_name"
   end
 
+  add_foreign_key "follows", "users"
   add_foreign_key "reviews", "users"
   add_foreign_key "user_venues", "venues"
   add_foreign_key "venue_wines", "venues"
