@@ -9,6 +9,9 @@ class User < ApplicationRecord
   has_many :user_venues, as: :manager
   has_many :venues, through: :user_venues
 
+  has_many :user_badges
+  has_many :badges, through: :user_badges
+  
   has_many :reviews
   has_many :follows
   has_many :followed_venues, :through => :follows, :source => :target, :source_type => 'Venue'

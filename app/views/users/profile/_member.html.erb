@@ -6,7 +6,17 @@ Should have
 - Your Badges
 - Feed
 -->
-
+<% if current_user.badges %>
+  <h3>Your Badges</h3>
+  <ul>
+    <% current_user.badges.each do |badge| %>
+    <li>
+      <p><%= badge.name %></p>
+      <%= image_tag("#{badge.name}.jpg") %>
+    </li>
+    <% end %>
+  </ul>
+<% end %>
 <p>Your Followers: <%= current_user.followers.count %></p>
 <p>You are Following: <%= current_user.follows.count %></p>
 <%= render partial: "users/feed" %>
