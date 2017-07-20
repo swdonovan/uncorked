@@ -1,4 +1,4 @@
-<%= link_to "Review", new_users_review_path(:reviewable_id => @reviewable.id, :reviewable_type => params["controller"]) %>
+<%= link_to "Review", new_users_review_path(:reviewable_id => @reviewable.id, :reviewable_type => params["controller"]), class:"waves-effect waves-light btn-large" %>
 <% if current_user.followed(@wine) %>
   <%= link_to "Unfollow #{@wine.class}", user_follow_path(current_user, current_user.followed(@wine)), :method => :delete, class:"waves-effect waves-light btn-large" %>
 <% else %>
