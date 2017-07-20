@@ -9,7 +9,7 @@ RSpec.feature "user wants to view timeline of followed feeds" do
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
         allow_any_instance_of(User).to receive(:news_feed).and_return([])
 
-        visit user_path(user)
+        visit users_profile_path
 
         expect(page).to have_content "News Feed"
         expect(page).to have_content "No activity."
@@ -34,7 +34,7 @@ RSpec.feature "user wants to view timeline of followed feeds" do
 
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user1)
 
-        visit user_path(user1)
+        visit users_profile_path
 
         expect(page).to have_content "News Feed"
         expect(page).to have_content "#{user2.first_name} #{user2.last_name} followed #{target.name}"

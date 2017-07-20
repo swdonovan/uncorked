@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
 
   before_action :require_no_user, only: [:new]
-  before_action :require_user, only: [:show, :edit]
-  before_action :set_user, only: [:edit, :update]
+  before_action :set_user, only: [:show, :edit, :update]
+  before_action :require_user, only: [:edit]
 
   def new
     @user = User.new
@@ -11,10 +11,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      # Save the user_id to the session object
       session[:user_id] = @user.id
 
-      # Create user on Authy, will return an id on the object
       authy = Authy::API.register_user(
         email: @user.email,
         cellphone: @user.phone_number,
@@ -22,31 +20,16 @@ class UsersController < ApplicationController
       )
       @user.update(authy_id: authy.id)
 
-      # Send an SMS to your user
       Authy::API.request_sms(id: @user.authy_id)
 
       redirect_to verify_path
-    else 
+    else
       render :new
     end
   end
 
   def show
     @user = User.find(params[:id])
-  end
-
-  def edit
-  end
-
-  def update
-    if @user.update(user_params)
-      redirect_to user_path(@user), success: "Profile updated"
-    else
-      render :edit
-    end
-  end
-  def show_verify
-    return redirect_to new_user_path unless session[:user_id]
   end
 
   def verify
@@ -72,10 +55,27 @@ class UsersController < ApplicationController
     redirect_to verify_path
   end
 
+  def edit
+  end
+
+  def update
+    if @user.update(user_params)
+      redirect_to users_profile_path, success: "Profile updated"
+    else
+      render :edit
+    end
+  end
+
+  def show_verify
+    return redirect_to new_user_path unless session[:user_id]
+  end
+
   private
 
+    def set_user
+      @user = current_user
+    end
 
-  private
     def require_no_user
       redirect_to user_path(current_user), warning: "You are already logged in.  Logout first to create a new account." if current_user
     end
@@ -84,13 +84,14 @@ class UsersController < ApplicationController
       redirect_to login_path, warning: "You must be logged in to do this." unless current_user
     end
 
-    def set_user
-      @user = current_user
+    def user_params
+      params.require(:user).permit(:first_name, :last_name, :email, :username, :phone_number, :bio, :password, :country_code)
     end
 
     def user_params
       params.require(:user).permit(:first_name, :last_name, :email, :username, :phone_number, :bio, :password, :country_code)
     end
+
     def send_message(message)
       @user = current_user
       twilio_number = ENV['TWILIO_NUMBER']
