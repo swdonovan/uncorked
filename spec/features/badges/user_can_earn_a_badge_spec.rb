@@ -25,8 +25,8 @@ RSpec.feature "User can earn a badge" do
           counter += 1
         end
 
-        visit user_path(user)
-
+        visit users_profile_path(user)
+        
         expect(page).to have_content(badge.name)
       end
     end
