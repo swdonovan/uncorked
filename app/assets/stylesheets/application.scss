@@ -8,3 +8,28 @@
   min-height: 300px;
   min-width: 300px;
 }
+
+.toast {
+  border-radius: 24px;
+
+  &.success {
+    background-color: #5cb85c;
+  }
+
+  &.danger {
+    background-color: orangered;
+  }
+
+  &.warning {
+    background-color: #FFCC00;
+  }
+
+  &.error {
+    background-color: #D8000C;
+  }
+
+  &.info {
+    background-color: #00529B;
+  }
+  
+}

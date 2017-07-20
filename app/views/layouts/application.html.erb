@@ -6,11 +6,11 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
   <body>
     <%= render 'layouts/nav' %>
-    <%= flash[:error] %>
-    <%= flash[:logout_success] %>
     <div class="container">
       <%= render 'layouts/flash' %>
       <%= yield %>

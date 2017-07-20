@@ -4,6 +4,7 @@ FactoryGirl.define do
     last_name "MyLastName"
     email "MyEmail@email.com"
     bio "Mybio blah blah"
+    country_code "1"
     phone_number "12310041041"
     password "password"
     role 0

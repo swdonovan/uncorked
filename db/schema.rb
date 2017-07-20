@@ -58,6 +58,10 @@ ActiveRecord::Schema.define(version: 20170718210054) do
     t.integer "role", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "verification_code"
+    t.string "country_code"
+    t.boolean "verified", default: false
+    t.integer "authy_id"
   end
 
   create_table "venue_wines", force: :cascade do |t|

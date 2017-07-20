@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+ruby '2.4.1'
+
 gem 'rails', '~> 5.1.2'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.7'
@@ -26,8 +28,11 @@ gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'geocoder'
+# Use Authy for sending token
+gem 'authy'
+# Use Twilio to send confirmation message
+gem 'twilio-ruby', '~>5.0.0'
 gem 'stream_rails'
-
 
 group :development, :test do
   gem 'rspec-rails'
