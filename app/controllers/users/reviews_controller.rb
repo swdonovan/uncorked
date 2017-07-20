@@ -16,6 +16,7 @@ class Users::ReviewsController < ApplicationController
       review.report_review
       flash[:success] = "Review successfully submitted!"
       redirect_to user_path(current_user)
+      Badge. badge_allocation(current_user)
     else
       render :new
     end
