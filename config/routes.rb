@@ -24,4 +24,12 @@ Rails.application.routes.draw do
     post '/edit_venues', to: "venue_wines#update"
   end
 
+  namespace :api do
+    namespace :v1 do
+      get '/reviews', to: 'reviews#index'
+      get '/reviews/new', to: 'reviews#new'
+      post '/reviews', to: 'reviews#create'
+    end
+  end
+
 end

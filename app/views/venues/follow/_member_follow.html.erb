@@ -1,1 +1,2 @@
 <%= link_to "Review", new_users_review_path(:reviewable_id => @reviewable.id, :reviewable_type => params["controller"]) %>
+<%= link_to "Create Review via API", new_api_v1_review(:revieable_id => @reviewable.id, :reviewable_type => params["controller"]) %>

@@ -1,15 +1,15 @@
 require 'rails_helper'
 
-describe "POST /api/v1/reviews" do
+RSpec.feature "POST /api/v1/reviews" do
   context "POST a wine review" do
     it "posts review via API" do
       user = create(:user)
       wine = create(:wine)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
-      get "/wines/#{wine.id}"
+      visit wine_path(wine)
 
-      expect(page).to have_link("Create Review via API", href: new_api_v1_review)
+      expect(page).to have_content("Create Review via API", href: new_api_v1_review)
 
       click_link "Create Review via API"
 
@@ -30,7 +30,7 @@ describe "POST /api/v1/reviews" do
       venue = create(:venue)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
-      get "/venues/#{venue.id}"
+      visit venue_path(venue)
 
       expect(page).to have_link("Create Review via API", href: new_api_v1_review)
 
