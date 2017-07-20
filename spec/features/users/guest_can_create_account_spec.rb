@@ -37,7 +37,7 @@ RSpec.feature "Guest Can Create User Account" do
       # expect(page).to have_content("Hello, #{user.first_name} #{user.last_name}")
       # expect(page).to have_content(user.email)
       # expect(page).to have_content(user.bio)
-      # expect(page).to have_content("Your Followers")
+      # expect(page).to have_content("Followers")
       # expect(page).to have_content("Following")
     end
   end

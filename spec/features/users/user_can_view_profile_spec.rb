@@ -13,10 +13,10 @@ RSpec.feature "user can view profile" do
 
       click_on "#{user.first_name} #{user.last_name}"
 
-      expect(current_path).to eq(user_path(user))
+      expect(current_path).to eq(users_profile_path)
       expect(page).to have_content(user.email)
       expect(page).to have_content(user.bio)
-      expect(page).to have_content("Your Followers")
+      expect(page).to have_content("Followers")
       expect(page).to have_content("Following")
     end
   end
@@ -24,7 +24,7 @@ RSpec.feature "user can view profile" do
   context "when not logged in" do
     let(:user) { create(:user) }
     it "user is redirected to login" do
-      visit user_path(user)
+      visit users_profile_path
 
       expect(current_path).to eq(login_path)
     end

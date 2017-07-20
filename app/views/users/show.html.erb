@@ -1,13 +1,8 @@
+<h3><%= @user.first_name %> <%= @user.last_name %></h3>
 <% if current_user %>
-  <%= link_to "Edit Profile", edit_user_path(current_user) %>
+  <%= render partial: "users/follow/#{current_user.role}_follow" %>
 <% end %>
-<p>Account Status: <% if @user.verified? %>Verified<% else %>Not Verified<% end %>
-<% if !@user.verified? %>
-<p>
-  <%= link_to "Verify your account now.", verify_path %>
-</p>
-<% end -%>
-<%= current_user.email %>
-<%= current_user.bio %>
+<%= @user.email %>
+<%= @user.bio %>
 
-<%= render partial: "users/profile/#{current_user.role}" %>
+<%= render partial: "users/roles/#{@user.role}", locals: {user: @user} %>

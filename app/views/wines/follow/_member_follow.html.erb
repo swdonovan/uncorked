@@ -1,1 +1,8 @@
-<%= link_to "Review", new_users_review_path(:reviewable_id => @reviewable.id, :reviewable_type => params["controller"]) %>
+<%= link_to "Review", new_users_review_path(:reviewable_id => @reviewable.id, :reviewable_type => params["controller"]), class:"waves-effect waves-light btn-large" %>
+<% if current_user.followed(@wine) %>
+  <%= link_to "Unfollow #{@wine.class}", user_follow_path(current_user, current_user.followed(@wine)), :method => :delete, class:"waves-effect waves-light btn-large" %>
+<% else %>
+  <% follow_params = {user_id: current_user.id, target_id: @wine.id, target_type: @wine.class} %>
+
+  <%= link_to "Follow #{@wine.class}", user_follows_path(current_user, follow_params), :method => :post, class:"waves-effect waves-light btn-large" %>
+<% end %>
