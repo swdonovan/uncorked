@@ -1,13 +1,23 @@
 namespace :badge_delegation do
-  desc "Check all users for eligibility of a badge"
+  desc "Check all users who have given a review for eligibility of All Star Reviewer badge and award them"
   task check_eligibility: :environment do
-    # eligible = User.joins(:reviews).where(reviews.count) == 10
-  end
 
-  desc "reward badges to those meeting criteria"
-  task reward_badges: :environment do
-    # eligible.each do |user|
-    #  user.badges.create(badge_id: 1)
-    # end
+    reviewers = User.joins(:reviews).distinct
+    star_performer = Badge.where(name: "All Star Performer")
+    eligible = []
+
+    puts "#{reviewers.count} Reviewers found"
+
+    reviewers.each do |user|
+      if user.reviews.count >= 10 && user.badges.count == 0
+        eligible << user
+      end
+    end
+
+    puts "#{eligible.count} users eligible for the All Star Performer badge found"
+
+    eligible.each do |user|
+      user.badges << star_performer
+    end
   end
 end
