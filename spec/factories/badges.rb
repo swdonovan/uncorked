@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :badge do
-    name "MyBadge"
+    name "All Star Performer"
     description "This Awesome badge"
   end
 end
