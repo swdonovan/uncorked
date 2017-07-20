@@ -15,6 +15,12 @@ Rails.application.routes.draw do
     resources :reviews, only: [:new, :create]
   end
 
+  namespace :api do
+    namespace :v1 do
+      get '/wine', to: 'wines#index'
+    end
+  end
+
   resources :users, only: [:show, :create, :new, :edit, :update] do
     resources :follows, only: [:create, :destroy]
   end
