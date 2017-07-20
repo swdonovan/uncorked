@@ -4,7 +4,7 @@ RSpec.describe Badge, type: :model do
   describe "validations" do
     context "invalid attributes" do
       it { should validate_presence_of(:name) }
-      it { should validate_presence_of(:decription) }
+      it { should validate_presence_of(:description) }
       it { should validate_uniqueness_of(:name) }
       it { should validate_uniqueness_of(:description) }
     end
