@@ -18,6 +18,10 @@ class Feed
     report_activity( default_activity_data.merge( verb: 'unfollow' ) )
   end
 
+  def review
+    report_activity( default_activity_data.merge( verb: 'review' ) )
+  end
+
   private
     attr_reader :user_feed,
                 :user_id,
