@@ -1,6 +1,6 @@
-namespace :badge_delegation do
+namespace :delegate_badge do
   desc "Check all users who have given a review for eligibility of All Star Reviewer badge and award them"
-  task check_eligibility: :environment do
+  task star_performer: :environment do
     puts "Finding users with reviews"
     reviewers = User.joins(:reviews).distinct
     star_performer = Badge.where(name: "All Star Performer")

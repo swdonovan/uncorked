@@ -28,8 +28,8 @@ class Users::ReviewsController < ApplicationController
 
     def badge_allocation
       if current_user.reviews.count == 10
-        badge = Badge.first
-        current_user.badges << badge
+        star_performer = Badge.where(name: "All Star Performer")
+        current_user.badges << star_performer
         flash[:success] = "You just received the 'All Star Reviewer' Badge!"
       end
     end
