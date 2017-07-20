@@ -29,7 +29,7 @@ class Users::ReviewsController < ApplicationController
 
     def badge_allocation
       if current_user.reviews.count == 10
-        current_user.badges.create(badge_id: 1)
+        UserBadge.create(badge_id: 1, user_id: current_user.id)
         flash[:success] = "You just received the 'All Star Reviewer' Badge!"
       end
     end

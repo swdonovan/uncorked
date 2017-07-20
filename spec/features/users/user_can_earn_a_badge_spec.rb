@@ -10,7 +10,7 @@ RSpec.feature "User can earn a badge" do
       let(:venue_0) { create(:venue) }
       let(:venue_1) { create_list(:venue, 2) }
       let(:venue_2) { create_list(:venue, 2) }
-      it "you have a badge associated with you" do
+      it "you earn a badge" do
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
         rating = (1..10).to_a
         desc = "It was nice"
@@ -41,7 +41,7 @@ RSpec.feature "User can earn a badge" do
         expect(user.badges.count).to eq(1)
       end
 
-      it "you earn a badge" do
+      it "you earn a badge and it appears on your profile" do
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
         10.times do
           counter = 1
@@ -59,7 +59,6 @@ RSpec.feature "User can earn a badge" do
 
           counter +=1
         end
-        expect(page).to have_content("Congratulations! You just earned the 'All Star Reviewer' Badge!")
 
         visit user_path(user)
 
