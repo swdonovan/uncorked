@@ -19,7 +19,7 @@ RSpec.feature "user can login" do
       expect(current_path).to eq(user_path(user))
       expect(page).to have_content(user.email)
       expect(page).to have_content(user.bio)
-      expect(page).to have_content("Your Followers")
+      expect(page).to have_content("Followers")
       expect(page).to have_content("Following")
     end
   end

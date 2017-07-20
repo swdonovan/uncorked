@@ -9,15 +9,14 @@ Rails.application.routes.draw do
   post "/login", to: "sessions#create"
   get "/logout", to: "sessions#destroy"
 
-  resources :users, only: [:show, :create, :new, :edit, :update]
-
   namespace :users do
     resources :reviews, only: [:new, :create]
+    get '/profile', to: 'profile#show'
   end
-
   resources :users, only: [:show, :create, :new, :edit, :update] do
     resources :follows, only: [:create, :destroy]
   end
+
   resources :venues, only: [:index, :show]
 
   namespace :manager do

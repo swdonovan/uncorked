@@ -1,0 +1,13 @@
+<%= link_to "Edit Profile", edit_user_path(@user) %>
+
+<p>Account Status: <% if @user.verified? %>Verified<% else %>Not Verified<% end %>
+<% if !@user.verified? %>
+<p>
+  <%= link_to "Verify your account now.", verify_path %>
+</p>
+<% end -%>
+<%= @user.email %>
+<%= @user.bio %>
+
+<%= render partial: "users/roles/#{@user.role}", locals: {user: @user} %>
+<%= render partial: "users/profile/feed" %>
