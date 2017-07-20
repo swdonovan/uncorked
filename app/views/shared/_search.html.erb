@@ -1,7 +1,25 @@
 <% if params[:q] %>
   <p>You searched for: <%= params[:q] %></p>
 <% end %>
-<form id="search_form" method="GET" action="<%= referral %>">
-  <input placeholder="Search" id="search" type="text" name="q" />
-  <input type="submit" value="Search">
-</form>
+<div class="row">
+  <form id="search_form search autocomplete" method="GET" action="<%= referral %>">
+    <div class="col s10">
+      <div class="input-field">
+        <input name="search" id="search autocomplete" type="search" class="search autocomplete inputFields" autocomplete="off">
+        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+        <i class="material-icons">close</i>
+      </div>
+    </div>
+    <div class="col s2">
+      <input type="submit" value="Search" class="waves-effect waves-light btn">
+    </div>
+  </form>
+</div>
+
+<script>
+  $( document ).ready(function() {
+    $.get("/api/v1/wine.json").then(data => $('input.autocomplete').autocomplete({ data
+    }))
+    });
+  
+  </script>
