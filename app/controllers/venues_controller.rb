@@ -8,6 +8,7 @@ class VenuesController < ApplicationController
 
   def show
     @reviewable = @venue
+    @reviews    = @venue.reviews
   end
 
   def new

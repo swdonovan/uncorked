@@ -41,6 +41,7 @@ class User < ApplicationRecord
   end
 
   def news_feed
+    binding.pry
     enricher = StreamRails::Enrich.new
     feed = StreamRails.feed_manager.get_news_feeds(id)[:flat]
     results = feed.get()['results']

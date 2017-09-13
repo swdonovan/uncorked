@@ -9,6 +9,7 @@ class Review < ApplicationRecord
   end
 
   def report_review
+    binding.pry
     attrs = {
       user_id: user_id,
       target_type: reviewable_type,
@@ -16,5 +17,15 @@ class Review < ApplicationRecord
       target_feed: reviewable_feed_name
     }
     Feed.new(attrs).review
+  end
+
+  def venue_report_review(venue_id)
+    attrs = {
+      venue_id: venue_id,
+      target_type: reviewable_type,
+      target_id: reviewable_id,
+      target_feed: reviewable_feed_name
+    }
+    VenueFeed.new(attrs).review
   end
 end
