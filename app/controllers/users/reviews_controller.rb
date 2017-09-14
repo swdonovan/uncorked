@@ -1,5 +1,6 @@
 class Users::ReviewsController < ApplicationController
   def new
+    session[:return_to] = request.referer
     @review = Review.new
   end
 
@@ -11,12 +12,11 @@ class Users::ReviewsController < ApplicationController
     else
       venue  = Venue.find(reviewable["reviewable_id"])
       review = venue.reviews.create(review_params)
-      review.venue_report_review(review_params['reviewable_id'])
     end
     if review.save
       review.report_review
       flash[:success] = "Review successfully submitted!"
-      redirect_to user_path(current_user)
+      redirect_to session.delete(:return_to)
       Badge.badge_allocation(current_user)
     else
       render :new

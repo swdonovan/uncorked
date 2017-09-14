@@ -17,14 +17,4 @@ class Review < ApplicationRecord
     }
     Feed.new(attrs).review
   end
-
-  def venue_report_review(venue_id)
-    attrs = {
-      venue_id: venue_id,
-      target_type: reviewable_type,
-      target_id: reviewable_id,
-      target_feed: reviewable_feed_name
-    }
-    VenueFeed.new(attrs).review
-  end
 end
