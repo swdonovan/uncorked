@@ -9,7 +9,6 @@
   </div>
     <div class="profile-overview white-div col s3 center-align">
       <h5><%= @user.first_name %> <%= @user.last_name %></h5>
-      <small><%= current_user.email %></small>
       <p><%= current_user.bio %></p>
       <p><%= current_user.followers.count %> Followers</p>
       <p><%= current_user.follows.count %> Following</p>
@@ -39,10 +38,17 @@
       <% current_user.followed_wines.each do |wine| %>
         <p><%= link_to wine.name, wine_path(wine) %></p>
       <% end %>
-
+    </div>
+    <div class="white-div col s3 center-align">
+      <h5>Venues You Follow</h5>
+      <% current_user.followed_venues.each do |venue| %>
+        <p><%= link_to venue.name, venue_path(venue) %></p>
+      <% end %>
     </div>
     <div class="white-div col s3 center-align">
       <h5>Account Details</h5>
+      <p>Username: <%= current_user.username %></p>
+      <p>Email: <%= current_user.email %></p>
       <%= link_to "Edit Profile", edit_user_path(@user), class: "waves-effect waves-light btn waves-input-wrapper" %>
 
       <p>Account Status: <% if @user.verified? %>Verified<% else %>Not Verified<% end %>

@@ -20,6 +20,7 @@ RSpec.feature "user can view profile" do
       expect(page).to have_content("Following")
       expect(page).to have_content("Badges")
       expect(page).to have_content("News Feed")
+      expect(page).to have_content(user.username)
     end
 
     it "user can see their followed wines" do
@@ -34,6 +35,20 @@ RSpec.feature "user can view profile" do
       expect(page).to have_content(wine_2.name)
       expect(page).to have_content(wine_3.name)
       expect(page).to_not have_content(wine_1.name)
+    end
+
+    it "user can see their followed venues" do
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+      venue_1, venue_2, venue_3 = create_list(:venue, 3)
+      create(:follow, user: user, target: venue_2)
+      create(:follow, user: user, target: venue_3)
+
+      visit '/'
+
+      expect(page).to have_content("Venues You Follow")
+      expect(page).to have_content(venue_2.name)
+      expect(page).to have_content(venue_3.name)
+      expect(page).to_not have_content(venue_1.name)
     end
   end
 
