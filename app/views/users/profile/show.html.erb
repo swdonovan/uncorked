@@ -6,19 +6,33 @@
   <%= link_to "Verify your account now.", verify_path %>
 </p>
 <% end -%>
+
 <%= @user.email %>
 <%= @user.bio %>
+<div class="row">
+  <div class="col s9">
 
-<% if current_user.badges %>
-  <h3>Your Badges</h3>
-  <ul>
-    <% current_user.badges.each do |badge| %>
-    <li>
-      <p><%= badge.name %></p>
-      <%= image_tag("/images/#{badge.name.parameterize}.png") %>
-    </li>
+    <%= render partial: "users/profile/feed" %>
+
+  </div>
+  <div class="col s3">
+    <p>Your Followers: <%= current_user.followers.count %></p>
+    <p>You are Following: <%= current_user.follows.count %></p>
+    <% if current_user.badges %>
+      <h3>Your Badges</h3>
+      <ul>
+        <% current_user.badges.each do |badge| %>
+        <li>
+          <p><%= badge.name %></p>
+          <%= image_tag("/images/#{badge.name.parameterize}.png") %>
+        </li>
+        <% end %>
+      </ul>
     <% end %>
-  </ul>
-<% end %>
+  </div>
+
+</div>
+
+
 
 <%= render partial: "users/profile/#{@user.role}", locals: {user: @user} %>
