@@ -18,6 +18,8 @@ RSpec.feature "user can view profile" do
       expect(page).to have_content(user.bio)
       expect(page).to have_content("Followers")
       expect(page).to have_content("Following")
+      expect(page).to have_content("Badges")
+      expect(page).to have_content("News Feed")
     end
   end
 

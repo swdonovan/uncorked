@@ -7,19 +7,25 @@
 </p>
 <% end -%>
 
-<%= @user.email %>
-<%= @user.bio %>
+
 <div class="row">
   <div class="col s9">
-
-    <%= render partial: "users/profile/feed" %>
-
+    <div class="feed">
+      <%= render partial: "users/profile/feed" %>
+    </div>
   </div>
-  <div class="col s3">
-    <p>Your Followers: <%= current_user.followers.count %></p>
-    <p>You are Following: <%= current_user.follows.count %></p>
-    <% if current_user.badges %>
-      <h3>Your Badges</h3>
+    <div class="profile-overview white-div col s3 center-align">
+      <h5><%= @user.first_name %> <%= @user.last_name %></h5>
+      <small><%= current_user.email %></small>
+      <p><%= current_user.bio %></p>
+      <p><%= current_user.followers.count %> Followers</p>
+      <p><%= current_user.follows.count %> Following</p>
+      <p><%= current_user.badges.count %> Badges</p>
+
+    </div>
+    <br>
+    <div class="col s3 white-div center-align">
+      <h5>Your Badges</h5>
       <ul>
         <% current_user.badges.each do |badge| %>
         <li>
@@ -27,8 +33,14 @@
           <%= image_tag("/images/#{badge.name.parameterize}.png") %>
         </li>
         <% end %>
+
       </ul>
-    <% end %>
+      <% if current_user.badges.empty? %>
+      <p>You have no badges yet! Start reviewing to earn badges.</p>
+      <%= link_to "Review Wines", wines_path, class: "waves-effect waves-light btn waves-input-wrapper" %>
+      <%= link_to "Review Venues", venues_path, class: "waves-effect waves-light btn waves-input-wrapper" %>
+      <% end %>
+    </div>
   </div>
 
 </div>
