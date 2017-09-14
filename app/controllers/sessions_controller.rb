@@ -6,11 +6,15 @@ class SessionsController < ApplicationController
       user = User.from_omniauth(request.env["omniauth.auth"])
       session[:user_id] = user.id
       redirect_to user_path(current_user)
-    elsif request.referer == login_path
+    elsif URI(request.referer).path == login_path
       @user = User.find_by(username: params[:session][:username])
-      @user && @user.authenticate(params[:session][:password])
-      session[:user_id] = @user.id
-      redirect_to user_path(current_user)
+      if @user && @user.authenticate(params[:session][:password])
+        session[:user_id] = @user.id
+        redirect_to user_path(current_user)
+      else
+        flash[:error] = "Incorrect Login information, try again"
+        render :new
+      end
     else
       flash[:error] = "Incorrect Login information, try again"
       render :new
