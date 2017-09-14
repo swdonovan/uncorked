@@ -15,12 +15,6 @@ class Venue < ApplicationRecord
   geocoded_by :full_address
   after_validation :geocode, if: ->(obj) { obj.full_address.present? and obj.full_address_changed? }
 
-  # include StreamRails::Activity
-  # as_activity
-  #
-  # def activity_object
-  # end
-
   def full_address
     "#{street_address} #{city}, #{state} #{zip}"
   end
