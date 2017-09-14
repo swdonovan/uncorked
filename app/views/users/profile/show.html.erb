@@ -1,11 +1,4 @@
-<%= link_to "Edit Profile", edit_user_path(@user) %>
 
-<p>Account Status: <% if @user.verified? %>Verified<% else %>Not Verified<% end %>
-<% if !@user.verified? %>
-<p>
-  <%= link_to "Verify your account now.", verify_path %>
-</p>
-<% end -%>
 
 
 <div class="row">
@@ -37,9 +30,25 @@
       </ul>
       <% if current_user.badges.empty? %>
       <p>You have no badges yet! Start reviewing to earn badges.</p>
-      <%= link_to "Review Wines", wines_path, class: "waves-effect waves-light btn waves-input-wrapper" %>
-      <%= link_to "Review Venues", venues_path, class: "waves-effect waves-light btn waves-input-wrapper" %>
+        <%= link_to "Review Wines", wines_path, class: "waves-effect waves-light btn waves-input-wrapper" %>
+        <%= link_to "Review Venues", venues_path, class: "waves-effect waves-light btn waves-input-wrapper" %>
       <% end %>
+    </div>
+    <div class="white-div col s3 center-align">
+      <h5>Wines You Follow</h5>
+
+
+    </div>
+    <div class="white-div col s3 center-align">
+      <h5>Account Details</h5>
+      <%= link_to "Edit Profile", edit_user_path(@user), class: "waves-effect waves-light btn waves-input-wrapper" %>
+
+      <p>Account Status: <% if @user.verified? %>Verified<% else %>Not Verified<% end %>
+      <% if !@user.verified? %>
+      <p>
+        <%= link_to "Verify your account now.", verify_path %>
+      </p>
+      <% end -%>
     </div>
   </div>
 
