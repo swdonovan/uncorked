@@ -31,7 +31,6 @@ class Feed
                 :verb
 
     def report_activity(data)
-      binding.pry
       user_feed.add_activity(data)
     end
 

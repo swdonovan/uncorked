@@ -9,7 +9,6 @@ class Review < ApplicationRecord
   end
 
   def report_review
-    binding.pry
     attrs = {
       user_id: user_id,
       target_type: reviewable_type,
