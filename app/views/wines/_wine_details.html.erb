@@ -1,5 +1,14 @@
-<p><%= wine.varietal %></p>
-<p><%= wine.vintage %></p>
-<p><%= wine.vineyard %></p>
-<p><%= wine.rating %></p>
-<p><%= wine.description %></p>
+<img src="<%= wine.image %>">
+<h5><%= link_to wine.name, wine_path(wine.code) %></h5>
+<p>
+  <strong>Varietal:</strong>
+  <%= wine.varietal %><br>
+  <strong>Vintage:</strong>
+  <%= wine.vintage %><br>
+  <strong>Vineyard:</strong>
+  <%= wine.vineyard %><br>
+  <strong>Rating:</strong>
+  <%= wine.rating %><br>
+  <strong>Price:</strong>
+  <%= wine.price %>
+</p>

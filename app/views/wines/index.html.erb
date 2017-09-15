@@ -3,19 +3,13 @@
 
 <div class="row">
   <% @wines.each do |wine| %>
-    <div class="col s6">
-      <div class="card medium">
-        <div class="card-content center">
-          <img src="<%= wine.image %>">
-          <h5><%= link_to wine.name, wine_path(wine) %></h5>
-          <p><strong>Varietal:</strong> <%= wine.varietal %><br>
-          <strong>Vintage:</strong> <%= wine.vintage %><br>
-          <strong>Vineyard:</strong> <%= wine.vineyard %><br>
-          <strong>Rating:</strong> <%= wine.rating %><br>
-          <strong>Price:</strong> <%= wine.price %></p>
-        </div>
+  <div class="col s6">
+    <div class="card medium">
+      <div class="card-content center">
+        <%= render partial: 'wines/wine_details', locals: {wine: wine} %>
       </div>
     </div>
+  </div>
 <% end %>
 </div>
 
