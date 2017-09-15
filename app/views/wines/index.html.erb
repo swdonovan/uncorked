@@ -1,21 +1,23 @@
 <h3>Search for a wine:</h3>
 <%= render partial: 'shared/search', locals: {referral: wines_path} %>
 
-<div class="wines">
-  <% if @wines.empty? %>
-    <p>No Wines Found</p>
-  <% else %>
-    <% @wines.each do |wine| %>
-      <div class="wine">
-        <p><%= link_to wine.name, wine_path(wine) %></p>
-        <p><%= wine.varietal %></p>
-        <p><%= wine.vintage %></p>
-        <p><%= wine.vineyard %></p>
-        <p><%= wine.rating %></p>
-        <p><%= wine.description %></p>
+<div class="row">
+  <% @wines.each do |wine| %>
+    <div class="col s6">
+      <div class="card medium">
+        <div class="card-content center">
+          <img src="<%= wine.image %>">
+          <h5><%= link_to wine.name, wine_path(wine) %></h5>
+          <p><strong>Varietal:</strong> <%= wine.varietal %><br>
+          <strong>Vintage:</strong> <%= wine.vintage %><br>
+          <strong>Vineyard:</strong> <%= wine.vineyard %><br>
+          <strong>Rating:</strong> <%= wine.rating %><br>
+          <strong>Price:</strong> <%= wine.price %></p>
+        </div>
       </div>
-    <% end %>
+    </div>
+<% end %>
+</div>
 
-    <%= will_paginate @wines %>
-  <% end %>
+<%#= will_paginate @wines %>
 </div>
