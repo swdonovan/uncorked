@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170720035405) do
+ActiveRecord::Schema.define(version: 20170914143519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20170720035405) do
     t.string "country_code"
     t.boolean "verified", default: false
     t.integer "authy_id"
+    t.bigint "uid"
   end
 
   create_table "venue_wines", force: :cascade do |t|
