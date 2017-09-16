@@ -14,7 +14,7 @@
    <tbody>
      <% @wines.each do |wine| %>
      <tr class = "wine-<%= wine.id %>">
-       <td><%= wine.name %></td>
+       <td><%= link_to wine.name, wine_path(wine) %></td>
        <td><%= wine.vineyard %></td>
        <td><%= wine.varietal %></td>
        <td><%= wine.vintage %></td>
