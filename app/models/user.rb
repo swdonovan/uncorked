@@ -5,6 +5,7 @@ class User < ApplicationRecord
   validates_uniqueness_of :username
 
   enum role: %w(member manager admin)
+  enum status: %w(active inactive)
 
   has_many :user_venues, as: :manager, dependent: :destroy
   has_many :venues, through: :user_venues, dependent: :destroy

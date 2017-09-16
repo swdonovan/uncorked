@@ -9,8 +9,4 @@ class Admin::UsersController < Admin::BaseController
     redirect_to admin_users_path
   end
 
-  def destroy
-    User.find(params[:id]).destroy
-    redirect_to admin_users_path
-  end
 end

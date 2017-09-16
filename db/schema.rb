@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 20170916222940) do
     t.boolean "verified", default: false
     t.integer "authy_id"
     t.bigint "uid"
-    t.integer "status"
+    t.integer "status", default: 0
   end
 
   create_table "venue_wines", force: :cascade do |t|
