@@ -9,12 +9,12 @@ RSpec.feature "Admin deactivates and reactivates user" do
     visit '/'
 
     click_on("Manage Users")
+    # binding.pry
     within(".user-#{user_1.id}") do
       click_on "Deactivate"
     end
     within(".user-#{user_1.id}") do
       expect(page).to have_content("inactive")
-      expect(page).to_not have_content("active")
     end
     within(".user-#{user_1.id}") do
       click_on "Reactivate"

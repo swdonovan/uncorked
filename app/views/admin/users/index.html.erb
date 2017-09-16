@@ -17,12 +17,13 @@
      <tr class = "user-<%= user.id %>">
        <td><%= user.name %></td>
        <td class = "role"><%= user.role %></td>
+       <td><%= user.status %></td>
        <td>
-         <%= link_to "Make Member", admin_user_path(user, role: "member"), method: "put", class: "waves-effect waves-light btn waves-input-wrapper"  unless user.member? %>
-         <%= link_to "Make Admin", admin_user_path(user, role: "admin"), method: "put", class: "waves-effect waves-light btn waves-input-wrapper" unless user.admin? %>
-         <%= link_to "Make Manager", admin_user_path(user, role: "manager"), method: "put", class: "waves-effect waves-light btn waves-input-wrapper" unless user.manager? %>
-         <%= link_to "Deactivate", admin_user_path(user, attributes: {status: "inactive"}), method: "put", class: "waves-effect waves-light btn waves-input-wrapper btn-red" if user.active? %>
-         <%= link_to "Reactivate", admin_user_path(user, attributes: {status: "active"}), method: "put", class: "waves-effect waves-light btn waves-input-wrapper btn-red" if user.active? %>
+         <%= link_to "Make Member", admin_user_path(user, attrs: {role: "member"}), method: "put", class: "waves-effect waves-light btn waves-input-wrapper"  unless user.member? %>
+         <%= link_to "Make Admin", admin_user_path(user, attrs: {role: "admin"}), method: "put", class: "waves-effect waves-light btn waves-input-wrapper" unless user.admin? %>
+         <%= link_to "Make Manager", admin_user_path(user, attrs: { role: "manager"}), method: "put", class: "waves-effect waves-light btn waves-input-wrapper" unless user.manager? %>
+         <%= link_to "Deactivate", admin_user_path(user, attrs: {status: "inactive"}), method: "put", class: "waves-effect waves-light btn waves-input-wrapper btn-red" if user.active? %>
+         <%= link_to "Reactivate", admin_user_path(user, attrs: {status: "active"}), method: "put", class: "waves-effect waves-light btn waves-input-wrapper btn-red" if user.inactive? %>
        </td>
      </tr>
      <% end %>

@@ -8,6 +8,7 @@ FactoryGirl.define do
     phone_number "12310041041"
     password "password"
     role 0
+    status 0
     uid "1234567890"
 
     sequence(:username) { |n| "username#{n}" }

@@ -5,8 +5,14 @@ class Admin::UsersController < Admin::BaseController
 
   def update
     @user = User.find(params[:id])
-    @user.update(role: params[:role])
+    @user.update(user_attributes)
     redirect_to admin_users_path
+  end
+
+  private
+
+  def user_attributes
+    params.require(:attrs).permit(:role, :status)
   end
 
 end
