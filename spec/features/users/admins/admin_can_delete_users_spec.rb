@@ -10,7 +10,6 @@ RSpec.feature "Admin deletes user" do
 
     click_on("Manage Users")
     within(".user-#{user_1.id}") do
-      within(".role") {expect(page).to have_content("member")}
       click_on "Delete"
     end
     expect(page).to_not have_content(user_1.name)
