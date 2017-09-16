@@ -6,7 +6,7 @@ class HomeController < ApplicationController
     elsif current_user && current_user.member?
       redirect_to users_profile_path
     elsif current_user && current_user.admin?
-      redirect_to 
+      redirect_to admin_dashboard_path
     end
   end
 end
