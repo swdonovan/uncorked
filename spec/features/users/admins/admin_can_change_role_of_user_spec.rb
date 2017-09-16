@@ -9,7 +9,7 @@ RSpec.feature "Admin edits role of user" do
     visit '/'
     expect(page).to have_content("Admin Dashboard")
 
-    click_on("Manager Users")
+    click_on("Manage Users")
     within(".user-#{user_1.id}") do
       expect(page).to have_content("Member")
       click_on "Make Manager"
