@@ -101,8 +101,7 @@ end
 
 def create_users
   users = [
-    ["Doug", "Miller", "dmiller", "doug@dmail.com", "I like big trucks and I like fine wine", "303-111-2222", "trucks4lyfe", '1'],
-    ["inactive", "user", "inactive_user", "inactive_user@gmail.com", "I can't do the wines =(", "7899239", "inactive", "1" ]
+    ["Doug", "Miller", "dmiller", "doug@dmail.com", "I like big trucks and I like fine wine", "303-111-2222", "trucks4lyfe", '1']
     ]
   users.each do |user|
     User.create!(first_name: user[0],
@@ -204,7 +203,7 @@ def create_badge
   Badge.create(name: "All Star Reviewer", description: "You are a contributing community member. You have given at least 10 reviews.")
 end
 
-# create_users
+create_users
 # create_managers
 create_fake_venues
 create_venues
