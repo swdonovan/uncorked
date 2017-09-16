@@ -4,7 +4,7 @@
    <thead>
      <tr>
          <th>Name</th>
-         <th>Locations</th>
+         <th>Location</th>
          <th>Options</th>
      </tr>
    </thead>
@@ -13,7 +13,7 @@
      <% @venues.each do |venue| %>
      <tr class = "venue-<%= venue.id %>">
        <td><%= venue.name %></td>
-       <td class = "role"><%= venue.role %></td>
+       <td><%= "#{venue.city}, #{venue.state}" %></td>
        <td>
          <%= link_to "Delete", admin_venue_path(venue), method: "delete", class: "waves-effect waves-light btn waves-input-wrapper btn-red" %>
        </td>
