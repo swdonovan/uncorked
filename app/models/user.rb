@@ -6,16 +6,16 @@ class User < ApplicationRecord
 
   enum role: %w(member manager admin)
 
-  has_many :user_venues, as: :manager
-  has_many :venues, through: :user_venues
+  has_many :user_venues, as: :manager, dependent: :destroy
+  has_many :venues, through: :user_venues, dependent: :destroy
 
-  has_many :user_badges
-  has_many :badges, through: :user_badges
+  has_many :user_badges, dependent: :destroy
+  has_many :badges, through: :user_badges, dependent: :destroy
 
-  has_many :reviews
-  has_many :follows
-  has_many :followed_venues, :through => :follows, :source => :target, :source_type => 'Venue'
-  has_many :followed_wines, through: :follows, source: :target, source_type: 'Wine'
+  has_many :reviews, dependent: :destroy
+  has_many :follows, dependent: :destroy
+  has_many :followed_venues, :through => :follows, :source => :target, :source_type => 'Venue', dependent: :destroy
+  has_many :followed_wines, through: :follows, source: :target, source_type: 'Wine', dependent: :destroy
 
 
   def self.from_omniauth(auth)
