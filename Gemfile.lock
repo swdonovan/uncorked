@@ -129,7 +129,11 @@ GEM
     geocoder (1.4.4)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
+<<<<<<< HEAD
     hashdiff (0.3.4)
+=======
+    hashdiff (0.3.6)
+>>>>>>> 8d5215cabecb50ad5a5200ef69af698016836caf
     hashie (3.5.6)
     http_signatures (0.2.2)
     httpclient (2.8.3)
@@ -173,8 +177,12 @@ GEM
     mimemagic (0.3.2)
     mini_mime (0.1.4)
     mini_portile2 (2.2.0)
+<<<<<<< HEAD
+=======
+    minitest (5.10.3)
+    multi_json (1.12.2)
+>>>>>>> 8d5215cabecb50ad5a5200ef69af698016836caf
     minitest (5.10.2)
-    multi_json (1.12.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
     net-scp (1.2.1)
