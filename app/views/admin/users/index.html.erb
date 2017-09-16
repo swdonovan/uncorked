@@ -13,13 +13,13 @@
 
    <tbody>
      <% @users.each do |user| %>
-     <tr>
+     <tr class = "user-<%= user.id %>">
        <td><%= user.name %></td>
-       <td><%= user.role %></td>
+       <td class = "role"><%= user.role %></td>
        <td>
          <%= link_to "Make Member", admin_user_path(user, role: "member"), method: "put", class: "waves-effect waves-light btn waves-input-wrapper"  unless user.member? %>
          <%= link_to "Make Admin", admin_user_path(user, role: "admin"), method: "put", class: "waves-effect waves-light btn waves-input-wrapper" unless user.admin? %>
-         <%= link_to "Make Manager", "#", class: "waves-effect waves-light btn waves-input-wrapper" unless user.manager? %>
+         <%= link_to "Make Manager", admin_user_path(user, role: "manager"), method: "put", class: "waves-effect waves-light btn waves-input-wrapper" unless user.manager? %>
        </td>
      </tr>
      <% end %>
