@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Admin deactivates user" do
+RSpec.feature "Admin deactivates and reactivates user" do
   it "user is deactivated" do
     admin = create(:user, role: "admin")
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
@@ -14,6 +14,14 @@ RSpec.feature "Admin deactivates user" do
     end
     within(".user-#{user_1.id}") do
       expect(page).to have_content("inactive")
+      expect(page).to_not have_content("active")
+    end
+    within(".user-#{user_1.id}") do
+      click_on "Reactivate"
+    end
+    within(".user-#{user_1.id}") do
+      expect(page).to have_content("active")
+      expect(page).to_not have_content("inactive")
     end
   end
 end
