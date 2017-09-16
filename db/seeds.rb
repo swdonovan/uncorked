@@ -101,7 +101,8 @@ end
 
 def create_users
   users = [
-    ["Doug", "Miller", "dmiller", "doug@dmail.com", "I like big trucks and I like fine wine", "303-111-2222", "trucks4lyfe", '1']
+    ["Doug", "Miller", "dmiller", "doug@dmail.com", "I like big trucks and I like fine wine", "303-111-2222", "trucks4lyfe", '1'],
+    ["inactive", "user", "inactive_user", "inactive_user@gmail.com", "I can't do the wines =(", "7899239", "inactive", "1" ]
     ]
   users.each do |user|
     User.create!(first_name: user[0],
