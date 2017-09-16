@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.feature "Admin deletes user" do
-  it "user is deleted" do
+RSpec.feature "Admin deactivates user" do
+  it "user is deactivated" do
     admin = create(:user, role: "admin")
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
     user_1, user_2 = create_list(:user, 2)
@@ -10,9 +10,10 @@ RSpec.feature "Admin deletes user" do
 
     click_on("Manage Users")
     within(".user-#{user_1.id}") do
-      click_on "Delete"
+      click_on "Deactivate"
     end
-    expect(page).to_not have_content(user_1.name)
-    expect(page).to have_content(user_2.name)
+    within(".user-#{user_1.id}") do
+      expect(page).to have_content("inactive")
+    end
   end
 end
