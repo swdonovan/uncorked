@@ -9,6 +9,31 @@
   min-width: 300px;
 }
 
+body {
+  background-color: rgba(250, 235, 235, 0.58);
+  background-repeat: no-repeat;
+  background-image: url(https://userscontent2.emaze.com/images/6cebcf23-8396-4b41-89d0-905d4b03aa8a/c7d47220-5eb1-4a82-831f-1fee08776ebc.jpg);
+}
+
+.feed h3 {
+  color: red;
+}
+
+.white-div {
+  background-color: white;
+  border: 1px solid rgba(0,0,0,0.1);
+  padding: 20px;
+  margin: 0.75rem 0 0 0;
+}
+
+.btn {
+  margin: 0 0 15px 0;
+}
+
+nav {
+  margin-bottom: 40px;
+}
+
 .toast {
   border-radius: 24px;
 

@@ -15,6 +15,21 @@ class User < ApplicationRecord
   has_many :reviews
   has_many :follows
   has_many :followed_venues, :through => :follows, :source => :target, :source_type => 'Venue'
+  has_many :followed_wines, through: :follows, source: :target, source_type: 'Wine'
+
+
+  def self.from_omniauth(auth)
+    user = find_or_create_by(uid: auth[:uid]) do |user|
+      user.uid            = auth["uid"]
+      user.first_name     = auth["info"]["name"].split(" ").first
+      user.last_name      = auth["info"]["name"].split(" ").last
+      user.username       = auth["info"]["name"]
+      user.email          = auth["info"]["email"]
+      user.phone_number   = 0
+      user.country_code   = 0
+      user.password       = "password"
+    end
+  end
 
   def verified?
     verified
