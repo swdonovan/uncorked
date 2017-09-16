@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "Admin edits role of user" do
-  it "can change default user to manager or admin" do
+  it "can change any user to any role" do
     admin = create(:user, role: "admin")
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
     user_1 = create(:user)
