@@ -34,6 +34,13 @@ Rails.application.routes.draw do
     resources :venues, only: [:index, :show, :new, :create, :edit, :update]
   end
 
+  namespace :admin do
+    resources :users, only: [:index]
+    get '/dashboard', to: 'admin#index'
+  end
+
+
+
   resources :wines, only: [:index, :show] do
     get '/add_to_venues', to: "venue_wines#new"
     post '/add_to_venues', to: "venue_wines#create"
