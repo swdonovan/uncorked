@@ -17,6 +17,10 @@ RSpec.describe "User Can Sign In And Out Through Facebook" do
 
      visit "/"
 
+     within (".right") do
+       click_on "Login"
+     end
+     
      click_on "Sign in with Facebook"
 
      expect(current_path).to eq users_profile_path
