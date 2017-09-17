@@ -27,8 +27,6 @@ RSpec.feature 'Guest can view a single venues' do
       expect(page).to have_content(venues.first.state)
       expect(page).to have_content(venues.first.zip)
 
-      expected_review = venues.first.reviews.first.description
-
       expect(page).to have_css("#map")
     end
   end

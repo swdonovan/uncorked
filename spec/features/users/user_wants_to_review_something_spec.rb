@@ -65,6 +65,9 @@ RSpec.feature "user wants to review..." do
         fill_in "Rating", with: 9
         click_button "Create Review"
         # expect(page).to have_content("Review successfully submitted!")
+        expected_review = test_venue.reviews.last.description
+
+        expect(page).to have_content(expected_review)
         expect(current_path).to eq(venue_path(test_venue))
       end
     end
