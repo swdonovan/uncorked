@@ -26,8 +26,8 @@ class User < ApplicationRecord
       user.last_name      = auth["info"]["name"].split(" ").last
       user.username       = auth["info"]["name"]
       user.email          = auth["info"]["email"]
-      user.phone_number   = 0000000
-      user.country_code   = 000
+      user.phone_number   = 0
+      user.country_code   = 0
       user.password       = "password"
     end
   end
