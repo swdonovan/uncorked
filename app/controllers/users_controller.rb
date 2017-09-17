@@ -13,6 +13,7 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
 
+      binding.pry
       authy = Authy::API.register_user(
         email: @user.email,
         cellphone: @user.phone_number,
