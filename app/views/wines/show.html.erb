@@ -4,5 +4,5 @@
 <div class="center">
   <%= render partial: 'wines/wine_details', locals: {wine: @wine} %>
 </div>
-<%#= render partial: 'wines/wine_reviews', locals: {wine: @wine} %>
-<%#= render partial: 'venues/summary', locals: {venues: @wine.venues} %>
+<%= render partial: 'wines/wine_reviews', locals: {wine: @wine} %>
+<%= render partial: 'venues/summary', locals: {venues: @wine.venues} %>

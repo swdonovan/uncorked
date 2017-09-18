@@ -4,7 +4,7 @@
 <div class="row">
   <% @wines.each do |wine| %>
   <div class="col s6">
-    <div class="card medium">
+    <div class="card medium wine">
       <div class="card-content center">
         <%= render partial: 'wines/wine_details', locals: {wine: wine} %>
       </div>
@@ -13,5 +13,5 @@
 <% end %>
 </div>
 
-<%#= will_paginate @wines %>
+<%= will_paginate @wines %>
 </div>
