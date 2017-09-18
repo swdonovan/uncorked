@@ -1,11 +1,11 @@
 <div class="center">
   <h2><%= @wine.name %></h2>
 </div>
-<!-- <#% if current_user %>
-  <%#= render partial: "wines/follow/#{current_user.role}_follow" %>
-<%# end %> -->
+<% if current_user %>
+  <%= render partial: "wines/follow/#{current_user.role}_follow" %>
+<% end %>
 <div class="center">
   <%= render partial: 'wines/wine_details', locals: {wine: @wine} %>
 </div>
-<%#= render partial: 'wines/wine_reviews', locals: {wine: @wine} %>
-<%#= render partial: 'venues/summary', locals: {venues: @wine.venues} %>
+<%= render partial: 'wines/wine_reviews', locals: {wine: @wine} %>
+<%= render partial: 'venues/summary', locals: {venues: @wine.venues} %>

@@ -22,7 +22,6 @@ RSpec.feature 'User can see one wine' do
       expect(page).to have_content(wines.first.rating)
       expect(page).to have_content(wines.first.description)
       expect(page).not_to have_content(wines.last.name)
-      binding.pry
       expect(page).to have_content(wines.first.reviews.first.description)
       expect(page).to have_content(wines.first.reviews.first.user.name)
     end
