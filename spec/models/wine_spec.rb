@@ -38,11 +38,7 @@ RSpec.describe Wine, type: :model do
       it "should have attributes" do
         wine = create(:wine)
         expect(wine.name).to be_a(String)
-        expect(wine.varietal).to be_a(String)
-        expect(wine.vintage).to be_a(String)
-        expect(wine.vineyard).to be_a(String)
-        expect(wine.rating).to be_a(Integer)
-        expect(wine.description).to be_a(String)
+        expect(wine.code).to be_a(String)
       end
     end
   end
