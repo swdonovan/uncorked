@@ -4,13 +4,12 @@ RSpec.describe Wine, type: :model do
   describe "validations" do
     context "invalid attributes" do
       it { should validate_presence_of(:name) }
-      it { should validate_presence_of(:vintage) }
-      it { should validate_presence_of(:rating) }
+      it { should validate_presence_of(:code) }
       it { should validate_uniqueness_of(:name) }
     end
 
     context "valid attributes" do
-      it "is valid with a name, varietal, vintage, vineyard, description and rating" do
+      it "is valid with a name and code" do
         wine = create(:wine)
 
         expect(wine).to be_valid
