@@ -31,7 +31,7 @@ gem 'geocoder'
 # Use Authy for sending token
 gem 'authy'
 # Use Twilio to send confirmation message
-gem 'twilio-ruby', '~>5.0.0'
+# gem 'twilio-ruby', '~>5.0.0'
 gem 'stream_rails'
 gem 'omniauth-facebook'
 gem 'font-awesome-sass'
