@@ -35,6 +35,7 @@ gem 'authy'
 gem 'stream_rails'
 gem 'omniauth-facebook'
 gem 'font-awesome-sass'
+gem 'therubyracer', git: 'https://github.com/cowboyd/therubyracer.git'
 
 group :development, :test do
   gem 'rspec-rails'
